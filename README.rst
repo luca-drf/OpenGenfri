@@ -1,6 +1,6 @@
-OpenGenfry
+OpenGenfri
 ==========
-OpenGenfry is an open source web application based on Django and Python for point of sale and storage management.
+OpenGenfri is an open source web application based on Django and Python for point of sale and storage management.
 
 Copyright (C) 2014 Simone Salsi
 
