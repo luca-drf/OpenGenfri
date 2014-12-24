@@ -7,6 +7,15 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
+# Ignore the following error when using ipython:
+# /usr/local/lib/python2.7/site-packages/django/db/backends/sqlite3/base.py:63:
+# RuntimeWarning: SQLite received a naive datetime (2014-12-19 16:46:59.585773)
+# while time zone support is active.
+import warnings
+import exceptions
+warnings.filterwarnings("ignore", category=exceptions.RuntimeWarning, 
+                        module='django.db.backends.sqlite3.base', lineno=63)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -24,6 +33,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
 ALLOWED_HOSTS = []
 
 
@@ -36,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpos',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -68,7 +80,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Rome'
 
 USE_I18N = True
 
