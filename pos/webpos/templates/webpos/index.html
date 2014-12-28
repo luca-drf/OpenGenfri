@@ -1,0 +1,16 @@
+{% if items %}
+    <table style="width:50%">
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+    {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No items are available.</p>
+{% endif %}
