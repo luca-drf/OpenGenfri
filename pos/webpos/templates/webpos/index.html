@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %}OpenGenfri > items{% endblock %}
+{% block content %}
 {% if items %}
     <table style="width:50%">
         <tr>
@@ -14,3 +17,8 @@
 {% else %}
     <p>No items are available.</p>
 {% endif %}
+<ul>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    <li><a href="{% url 'chpwd' %}">Change Password</a></li>
+</ul>
+{% endblock %}
