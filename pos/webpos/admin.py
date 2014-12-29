@@ -38,11 +38,11 @@ class BillItemInline(admin.StackedInline):
 
 class BillAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['customer_name', 'customer_id', 'total']})
+        (None, {'fields': ['customer_name', 'customer_id', 'total', 'server']})
     ]
     inlines = [BillItemInline]
-    list_display = ('customer_name', 'customer_id', 'id', 'date', 'total')
-    search_fields = ['customer_name', 'customer_id', 'id', 'date']
+    list_display = ('customer_name', 'customer_id', 'id', 'server', 'date', 'total')
+    search_fields = ['customer_name', 'customer_id', 'id', 'date', 'server']
 
 
 admin.site.register(Item, ItemAdmin)

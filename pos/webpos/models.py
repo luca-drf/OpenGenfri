@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Location class, used to determine from wich actual pos location the cashier is working (ex. Bar, restaurant, ...)
 
@@ -54,6 +56,7 @@ class Bill(models.Model):
     customer_name = models.CharField(max_length=40)
     date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=12, decimal_places=2)
+    server = models.ForeignKey(User)
 
     def __str__(self):
         return self.customer_name + ' ' + '#' + str(self.id)
