@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Location class, used to determine from wich actual pos location the cashier is working (ex. Bar, restaurant, ...)
+# Location class, used to determine from wich actual pos location the cashier
+# is working (ex. Bar, restaurant, ...)
 
 class Location(models.Model):
     id = models.AutoField(primary_key=True)
@@ -12,7 +13,8 @@ class Location(models.Model):
     def __str__(self):
         return self.description
 
-# Category class, used as a container for different type of items, related by area (ex. Kitchen, beverages, ...)
+# Category class, used as a container for different type of items, related by
+# area (ex. Kitchen, beverages, ...)
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,7 +29,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# Item class, basically the items that we'll sell (ex. Coke, Pizza, Costata, ...)
+# Item class, basically the items that we'll sell (ex. Coke, Pizza, Costata,
+# ...)
 
 class Item(models.Model):
     id = models.AutoField(primary_key=True) #check if ID is useful
@@ -62,11 +65,12 @@ class Bill(models.Model):
         return self.customer_name + ' ' + '#' + str(self.id)
 
 
-# class to store the single entries that when grouped together will form one, and just one bill
+# class to store the single entries that when grouped together will form one,
+# and just one bill
 
 class BillItem(models.Model):
     id = models.AutoField(primary_key=True)
     bill = models.ForeignKey('Bill')
     item = models.ForeignKey('Item')
     quantity = models.PositiveSmallIntegerField()
-    total = models.DecimalField(max_digits=12, decimal_places=2)
+    item_price = models.DecimalField(max_digits=12, decimal_places=2)
