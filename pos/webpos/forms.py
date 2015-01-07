@@ -2,15 +2,7 @@ from django import forms
 from webpos.models import Category
 
 
-def retrieve_categories():
-    default = [(0, 'All')]
-    categories = [(i.pk, i.name) for i in Category.objects.all()]
-    default.extend(categories)
-    return default
-
-
 class ReportForm(forms.Form):
-    # sel_category = forms.ChoiceField(choices=retrieve_categories())
     sel_category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                           empty_label='All',
                                           required=False)
@@ -28,3 +20,6 @@ class ReportForm(forms.Form):
 # '%m/%d/%y %H:%M:%S',     # '10/25/06 14:30:59'
 # '%m/%d/%y %H:%M',        # '10/25/06 14:30'
 # '%m/%d/%y']              # '10/25/06'
+
+class SearchForm(forms.Form):
+    search = forms.CharField()

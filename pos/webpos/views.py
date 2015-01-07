@@ -1,15 +1,17 @@
 import json
+import re
 from django.shortcuts import render_to_response#, get_object_or_404
 from django.http import JsonResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.views.decorators.csrf import csrf_protect
 from django.views import generic
+from django.views.decorators.csrf import csrf_protect
 from django.db import transaction
+from django.db.models import Q
 
 from django.contrib.auth.models import User
 from webpos.models import Item, Category, BillItem, Bill
 from webpos import dbmanager as dbmng
-from webpos.forms import ReportForm
+from webpos.forms import ReportForm, SearchForm
 
 
 def index(request):
@@ -65,7 +67,7 @@ def bill_handler(request):
         return JsonResponse(dbmng.commit_bill(output, reqdata, request.user))
 
 
-def report(request):
+def report(request, *args):
     qs_empty = False    
     if request.GET:
         form = ReportForm(request.GET)
@@ -101,3 +103,36 @@ def report(request):
 class BillDetailView(generic.DetailView):
     model = Bill
     template_name = 'webpos/bill_detail.html'
+
+
+def search(request, *args):
+    qs_empty = False
+    if request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            search_text = form.cleaned_data['search']
+            if re.match(r'[A-Za-z ]+', search_text):
+                qserver = Q(server__username__contains=search_text)
+                qcustomer = Q(customer_name__contains=search_text)
+
+                qs = Bill.objects.filter(qserver | qcustomer)
+            
+            elif re.match(r'[0-9]+', search_text):
+                qs = Bill.objects.filter(pk=int(search_text))
+            
+            if not qs.exists():
+                qs_empty = True
+            return render_to_response('webpos/search.html',
+                                      {'form': form,
+                                       'qs_empty': qs_empty,
+                                       'queryset': qs})
+
+        else:
+            return render_to_response('webpos/search.html',
+                                      {'form': 'No!',
+                                       'qs_empty': qs_empty})
+    else:
+        form = SearchForm()
+        return render_to_response('webpos/search.html', {'form': form,
+                                                         'qs_empty': qs_empty})
+
