@@ -36,7 +36,7 @@ class Item(models.Model):
     id = models.AutoField(primary_key=True) #check if ID is useful
     name = models.CharField(max_length=30, unique=True)
     category = models.ForeignKey('Category')
-    quantity = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField(null=True, blank=True)
     priority = models.PositiveSmallIntegerField(default=3)
     enabled = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -49,7 +49,6 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
-
 
 # Bill class, it stores a whole order made by one client 
 

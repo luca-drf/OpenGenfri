@@ -23,6 +23,14 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse('login'))
 
+def order(request):
+    if request.user.is_authenticated():
+        categories = Category.objects.filter(enabled=True).order_by('priority')
+        items = Item.objects.filter(enabled=True).order_by('category')
+        return render_to_response('webpos/order.html', {
+            'categories' : categories,
+            'items'      : items
+        })
 
 ### AJAX REFRESH
 

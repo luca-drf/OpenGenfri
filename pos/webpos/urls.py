@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^refresh/$', login_required(views.refresh_buttons), name='refresh'),
+    url(r'^order/$', views.order, name='order'),
+    url(r'^refresh/$', views.refresh_buttons, name='refresh'),
     # url(r'^commit/$', views.commit_bill, name='commit'),
     url(r'^report/(\?(\w=[0-9A-Z%]&?)+)?$', login_required(views.report), name='report'),
     url(r'^bill/(?P<pk>\d+)/$', login_required(views.BillDetailView.as_view()),

@@ -1,0 +1,174 @@
+body {
+  font-size: 1.5em;
+  background: url('../img/wood.jpg?1356455167');
+  color: #262626;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+hr {
+  clear: both;
+  border: 1px solid black;
+  margin: 10px 5px;
+}
+
+main {
+  background: url('../img/paper.jpg?1356455166');
+  width: 1000px;
+  margin: auto;
+  -moz-box-shadow: 0 2px 3px black;
+  -webkit-box-shadow: 0 2px 3px black;
+  box-shadow: 0 2px 3px black;
+}
+
+header {
+  width: 1000px;
+  height: 190px;
+  text-align: center;
+  background-image: url("http://www.paeseinfesta.it/templates/sonne/css/images/Header.png");
+  background-position: center top;
+}
+
+section {
+  width: 1000px;
+}
+
+article {
+  float: left;
+  width: 630px;
+  padding-left: 10px;
+}
+
+aside {
+  float: left;
+  width: 310px;
+  background-image: url('../img/paper.gif?1356455165');
+  font-family: monospace;
+  margin-left: 20px;
+  padding: 10px;
+  -moz-box-shadow: 0 2px 3px black;
+  -webkit-box-shadow: 0 2px 3px black;
+  box-shadow: 0 2px 3px black;
+}
+aside h3 {
+  margin: 0;
+}
+aside table {
+  width: 100%;
+}
+aside .amount {
+  width: 1px;
+  text-align: right;
+}
+aside .item {
+  text-align: left;
+}
+aside .price {
+  width: 1px;
+  text-align: right;
+  white-space: nowrap;
+}
+aside .total {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+footer {
+  clear: both;
+  width: 1000px;
+  text-align: center;
+  vertical-align: bottom;
+  height: 85px;
+}
+
+#logo {
+  float: left;
+  padding: 5px;
+  height: 75px;
+  background-color: rgba(127, 74, 55, 0.8);
+}
+
+.buttons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.buttons li {
+  -moz-box-shadow: 0 2px 3px black;
+  -webkit-box-shadow: 0 2px 3px black;
+  box-shadow: 0 2px 3px black;
+  margin: 5px 2px;
+  text-align: center;
+  background-position: 0 -20px;
+  background-repeat: repeat-x;
+  display: inline-block;
+  /* non-flexbox browsers */
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.buttons li:hover {
+  background-image: none;
+}
+.buttons li a {
+  display: block;
+  height: 2.5em;
+  width: 138px;
+  word-wrap: break-word;
+  overflow: auto;
+  padding: 5px;
+}
+
+.products {
+  overflow: auto;
+}
+
+.pizza, .category-5 {
+  background-color: red;
+}
+
+.restaurant, .category-3 {
+  background-color: green;
+}
+
+.drink, .category-1 {
+  background-color: blue;
+}
+
+.dessert, .category-4 {
+  background-color: orange;
+}
+
+.ticket, .category-6 {
+  background-color: purple;
+}
+
+.hotdogs, .category-2 {
+  background-color: brown;
+}
+
+.user-form {
+  float: left;
+}
+.user-form input {
+  height: 1.5em;
+  width: 200px;
+  font-size: 1em;
+  margin: 15px 0 0 5px;
+  border: 1px solid grey;
+  padding: 3px 5px;
+  border-radius: 2px;
+}
+.user-form input:focus {
+  border: 1px solid darkorange;
+  box-shadow: 0 0 3px grey inset;
+}
