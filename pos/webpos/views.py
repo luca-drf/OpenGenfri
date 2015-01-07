@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from django.contrib.auth.models import User
-from webpos.models import Item
+from webpos.models import Item, Category
 from webpos import dbmanager as dbmng
 
 
@@ -21,6 +21,14 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse('login'))
 
+def order(request):
+    if request.user.is_authenticated():
+        categories = Category.objects.filter(enabled=True).order_by('priority')
+        items = Item.objects.filter(enabled=True).order_by('category')
+        return render(request, 'webpos/order.html', {
+            'categories' : categories,
+            'items'      : items
+        })
 
 ### AJAX REFRESH
 

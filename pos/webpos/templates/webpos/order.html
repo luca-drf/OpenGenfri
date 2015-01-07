@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <script type="text/css" src="{% static "css/foundation.min.css" %}"></script>
+    <link href="{% static "css/screen.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block title %}OpenGenfri > order{% endblock %}
+{% block content %}
+    <main>
+        <header>
+        </header>
+        <section>
+            <article>
+                <ul class="categories buttons">
+                    {% for cat in categories %}
+                        <li class="category-{{ cat.id }}">
+                            <a href="#">{{ cat.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <hr/>
+                <ul class="products buttons">
+                    {% for item in items %}
+                        <li class="category-{{ item.category.id }}">
+                            <a href="#">{{ item.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </article>
+            <aside>
+                <form class="user-form" action="#">
+                    <input type="text" name="username" autocomplete="off" placeholder="Nome cliente" />
+                </form>
+                <a style="float:right;" title="By David Vignoni [LGPL (www.gnu.org/licenses/lgpl.html)], via Wikimedia Commons" href="http://commons.wikimedia.org/wiki/File%3AGnome-dev-printer.svg">
+                    <img style="border:none;" width="64" alt="Gnome-dev-printer" src="http://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Gnome-dev-printer.svg/64px-Gnome-dev-printer.svg.png"/>
+                </a>
+                <table>
+                </table>
+            </aside>
+        </section>
+        <footer>
+        </footer>
+    </main>
+{% endblock %}

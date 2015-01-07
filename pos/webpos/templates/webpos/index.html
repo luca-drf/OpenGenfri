@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <script type="text/css" src="{% static "css/foundation.min.css" %}"></script>
+    <link href="{% static "css/screen.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
+{% endblock %}
 {% block title %}OpenGenfri > items{% endblock %}
 {% block content %}
 <h3>Server: {{user.username}}</h3>

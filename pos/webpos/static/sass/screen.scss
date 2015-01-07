@@ -1,0 +1,176 @@
+@import "compass/css3/box-shadow";
+@import "compass/css3/flexbox";
+
+//colors
+$color_shark_approx: #262626;
+$white: white;
+$black: black;
+$color_ironstone_80_approx: rgba(127, 74, 55, 0.8);
+$color_red_approx: red;
+$color_japanese_laurel_approx: green;
+$color_blue_approx: blue;
+$web_orange: orange;
+$color_seance_approx: purple;
+$gray:  grey;
+$color_pizazz_approx: darkorange;
+$color_brown: brown;
+
+//fonts
+$font_0: Arial;
+$font_1: Helvetica;
+$font_2: sans-serif;
+$font_3: monospace;
+
+body {
+    font-size: 1.5em;
+    background: image-url('wood.jpg');
+    color: $color_shark_approx;
+    font-family: $font_0, $font_1, $font_2;
+}
+a {
+    color: $white;
+    text-decoration: none;
+}
+hr {
+    clear: both;
+    border: 1px solid $black;
+    margin: 10px 5px;
+}
+main {
+    background: image-url('paper.jpg');
+    width: 1000px;
+    margin: auto;
+    //box-shadow: 0 2px 3px $black;
+    @include box-shadow(0 2px 3px $black)
+}
+header {
+    width: 1000px;
+    height: 190px;
+    text-align: center;
+    background-image: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png');
+    background-position: center top;
+}
+section {
+    width: 1000px;
+}
+article {
+    float: left;
+    width: 630px;
+    padding-left: 10px;
+}
+aside {
+    float: left;
+    width: 310px;
+    background-image: image-url('paper.gif');
+    font-family: $font_3;
+    margin-left: 20px;
+    padding: 10px;
+    //box-shadow: 0 2px 3px $black;
+    @include box-shadow(0 2px 3px $black);
+    h3 {
+        margin: 0;
+    }
+    table {
+        width: 100%;
+    }
+    .amount {
+        width: 1px;
+        text-align: right;
+    }
+    .item {
+        text-align: left;
+    }
+    .price {
+        width: 1px;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .total {
+        font-size: 1.5em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+}
+footer {
+    clear: both;
+    width: 1000px;
+    text-align: center;
+    vertical-align: bottom;
+    height: 85px;
+}
+#logo {
+    float: left;
+    padding: 5px;
+    height: 75px;
+    background-color: $color_ironstone_80_approx;
+}
+.buttons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        //float: left;
+        //box-shadow: 0 2px 3px $black;
+        @include box-shadow(0 2px 3px $black);
+        margin: 5px 2px;
+        text-align: center;
+        background-position: 0 -20px;
+        background-repeat: repeat-x;
+        display: inline-block; /* non-flexbox browsers */
+        @include display-flex(inline-flex);
+        @include align-items(center);
+        @include justify-content(center);
+        &:hover {
+            background-image: none;
+        }
+    
+        a {
+            display: block;
+            height: 2.5em;
+            width: 138px;
+            word-wrap: break-word;
+            overflow: auto;
+            padding: 5px;
+        }
+    }
+}
+.products {
+    overflow: auto;
+}
+.pizza, .category-5 {
+    background-color: $color_red_approx;
+}
+.restaurant, .category-3 {
+    background-color: $color_japanese_laurel_approx;
+}
+.drink, .category-1 {
+    background-color: $color_blue_approx;
+}
+.dessert, .category-4 {
+    background-color: $web_orange;
+}
+.ticket, .category-6 {
+    background-color: $color_seance_approx;
+}
+.hotdogs, .category-2 {
+    background-color: $color_brown;
+}
+.user-form {
+    float: left;
+    input {
+        height: 1.5em;
+        width: 200px;
+        font-size: 1em;
+        margin: 15px 0 0 5px;
+        border: 1px solid $gray;
+        padding: 3px 5px;
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 2px;
+        &:focus {
+            border: 1px solid $color_pizazz_approx;
+            //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: 0 0 3px $gray inset;
+        }
+    }
+}
