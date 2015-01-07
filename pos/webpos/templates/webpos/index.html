@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block head %}
-    <script type="text/css" src="{% static "css/foundation.min.css" %}"></script>
-    <link href="{% static "css/screen.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
-{% endblock %}
 {% block title %}OpenGenfri > items{% endblock %}
 {% block content %}
-<h3>Server: {{user.username}}</h3>
+<h3>Server: {{server.username}}</h3>
 {% if items %}
     <table style="width:50%">
         <tr>
@@ -26,6 +22,9 @@
     <p>No items are available.</p>
 {% endif %}
 <ul>
+    <li><a href="{% url 'webpos:search' %}">Search</a></li>        
+    <li><a href="{% url 'webpos:report' %}">Report</a></li>    
+    <li><a href="{% url 'webpos:order' %}">Order</a></li>    
     <li><a href="{% url 'logout' %}">Logout</a></li>
     <li><a href="{% url 'chpwd' %}">Change Password</a></li>
 </ul>

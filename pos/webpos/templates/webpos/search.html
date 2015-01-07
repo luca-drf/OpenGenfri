@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}OpenGenfri > search{% endblock %}
+{% block content %}
+<p>Search Customer's name, bill number or server.</p>
+<form action="" method="get">
+{{ form }}
+<input type="submit" value="Search" />
+<br/>
+<br/>
+<a href="{% url 'index'%}">Home</a>
+<br/>
+<br/>
+{% if queryset %}
+<table style="width:60%">
+    <tr>
+        <th>Bill #</th>
+        <th>Customer Name</th>
+        <th>Date</th>
+        <th>Server</th>
+        <th>Total</th>
+    </tr>
+    {% for bill in queryset %}
+    <tr>
+        <td><a href="{% url 'webpos:bill-detail' bill.id %}">{{bill.id}}</a></td>
+        <td>{{bill.customer_name}}</td>
+        <td>{{bill.date}}</td>
+        <td>{{bill.server.username}}</td>
+        <td>${{bill.total}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% elif qs_empty %}
+<p>No bills found.</p>
+{% endif %}
+{% endblock %}
