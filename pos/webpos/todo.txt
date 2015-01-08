@@ -1,3 +1,3 @@
 #TODO list of things to check / verify
 
-Atomic transcactions on DB
+Atomic transcactions on DB. DONE
