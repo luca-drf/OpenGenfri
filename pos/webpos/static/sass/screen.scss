@@ -1,5 +1,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/flexbox";
+@import "compass/css3/user-interface";
+@import "compass/css3/transition";
 
 //colors
 $color_shark_approx: #262626;
@@ -30,6 +32,7 @@ body {
 a {
     color: $white;
     text-decoration: none;
+    outline: none;
 }
 hr {
     clear: both;
@@ -41,63 +44,98 @@ main {
     width: 1000px;
     margin: auto;
     //box-shadow: 0 2px 3px $black;
-    @include box-shadow(0 2px 3px $black)
-}
-header {
-    width: 1000px;
-    height: 190px;
-    text-align: center;
-    background-image: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png');
-    background-position: center top;
-}
-section {
-    width: 1000px;
-}
-article {
-    float: left;
-    width: 630px;
-    padding-left: 10px;
-}
-aside {
-    float: left;
-    width: 310px;
-    background-image: image-url('paper.gif');
-    font-family: $font_3;
-    margin-left: 20px;
-    padding: 10px;
-    //box-shadow: 0 2px 3px $black;
     @include box-shadow(0 2px 3px $black);
-    h3 {
-        margin: 0;
+    @include user-select(none);
+    header {
+        height: 90px;
+        text-align: center;
+        background-image: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png');
+        background-position: center top;
     }
-    table {
-        width: 100%;
+    section {
     }
-    .amount {
-        width: 1px;
-        text-align: right;
+    article {
+        float: left;
+        width: 580px;
+        padding-left: 10px;
     }
-    .item {
-        text-align: left;
+    aside {
+        float: left;
+        width: 360px;
+        background-image: image-url('paper.gif');
+        font-family: $font_3;
+        margin-left: 20px;
+        padding: 10px;
+        //box-shadow: 0 2px 3px $black;
+        @include box-shadow(0 2px 3px $black);
+        position: relative;
+        .btn-print-bill {
+            font-size: 50px;
+            color: black;
+            position: absolute;
+            right: 0;
+            @include single-transition(color, 200ms);
+            &.disabled {
+                color: rgba(black, 0.2);
+            }
+        }
+        h3 {
+            margin: 0;
+        }
+        table {
+            width: 100%;
+        }
+        .amount {
+            width: 35px;
+            text-align: right;
+        }
+        .item {
+            max-width: 150px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
+        .price {
+            width: 90px;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .edit {
+            width: 55px;
+            text-align: right;
+            a {
+                font-size: 22px;
+                width: 20px;
+                height: 22px;
+                display: inline-block;
+                @include display-flex(inline-flex);
+                @include align-items(center);
+                @include justify-content(center);
+                &.add {
+                    color: green;
+                }
+                &.remove {
+                    color: red;
+                }
+                &:active {
+                    color: black;
+                }
+            }
+        }
+        .total {
+            font-size: 1.5em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            font-weight: bold;
+        }
     }
-    .price {
-        width: 1px;
-        text-align: right;
-        white-space: nowrap;
+    footer {
+        clear: both;
+        text-align: center;
+        vertical-align: bottom;
+        height: 85px;
     }
-    .total {
-        font-size: 1.5em;
-        text-transform: uppercase;
-        white-space: nowrap;
-        font-weight: bold;
-    }
-}
-footer {
-    clear: both;
-    width: 1000px;
-    text-align: center;
-    vertical-align: bottom;
-    height: 85px;
 }
 #logo {
     float: left;
@@ -110,57 +148,62 @@ footer {
     padding: 0;
     margin: 0;
     li {
-        //float: left;
-        //box-shadow: 0 2px 3px $black;
         @include box-shadow(0 2px 3px $black);
         margin: 5px 2px;
         text-align: center;
-        background-position: 0 -20px;
-        background-repeat: repeat-x;
         display: inline-block; /* non-flexbox browsers */
         @include display-flex(inline-flex);
         @include align-items(center);
         @include justify-content(center);
-        &:hover {
-            background-image: none;
-        }
-    
+
         a {
             display: block;
-            height: 2.5em;
-            width: 138px;
+            height: 60px;
+            width: 124px;
             word-wrap: break-word;
             overflow: auto;
             padding: 5px;
+            &:active {
+            }
         }
     }
 }
 .products {
     overflow: auto;
 }
+@mixin category ($color) {
+    background-color: $color;
+    @include single-transition(background-color, 200ms);
+    &:hover {
+        background-color: tint($color, 20);
+    }
+    &:active {
+        background-color: $color;
+    }
+}
 .pizza, .category-5 {
-    background-color: $color_red_approx;
+    @include category($color_red_approx);
 }
 .restaurant, .category-3 {
-    background-color: $color_japanese_laurel_approx;
+    @include category($color_japanese_laurel_approx);
 }
 .drink, .category-1 {
-    background-color: $color_blue_approx;
+    @include category($color_blue_approx);
 }
 .dessert, .category-4 {
-    background-color: $web_orange;
+    @include category($web_orange);
 }
 .ticket, .category-6 {
-    background-color: $color_seance_approx;
+    @include category($color_seance_approx);
 }
 .hotdogs, .category-2 {
-    background-color: $color_brown;
+    @include category($color_brown);
 }
 .user-form {
     float: left;
     input {
         height: 1.5em;
-        width: 200px;
+        width: 280px;
         font-size: 1em;
         margin: 15px 0 0 5px;
         border: 1px solid $gray;
