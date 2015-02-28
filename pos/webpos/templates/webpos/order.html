@@ -3,6 +3,7 @@
 {% block head %}
     <script type="text/css" src="{% static "css/foundation.min.css" %}"></script>
     <link href="{% static "css/screen.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="{% static "css/fontello.css" %}" media="all" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block title %}OpenGenfri > order{% endblock %}
 {% block content %}
@@ -14,7 +15,7 @@
                 <ul class="categories buttons">
                     {% for cat in categories %}
                         <li class="category-{{ cat.id }}">
-                            <a href="#">{{ cat.name }}</a>
+                        <a href="#" data-id="{{ cat.id }}" data-priority="{{ cat.priority }}">{{ cat.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -22,23 +23,51 @@
                 <ul class="products buttons">
                     {% for item in items %}
                         <li class="category-{{ item.category.id }}">
-                            <a href="#">{{ item.name }}</a>
+                        <a href="#" data-id="{{ item.id }}" data-price="{{ item.price }}" data-category="{{ item.category.id }}">{{ item.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             </article>
             <aside>
                 <form class="user-form" action="#">
-                    <input type="text" name="username" autocomplete="off" placeholder="Nome cliente" />
+                    <input class="customer-name" type="text" name="username" autocomplete="off" placeholder="Nome cliente" />
                 </form>
-                <a style="float:right;" title="By David Vignoni [LGPL (www.gnu.org/licenses/lgpl.html)], via Wikimedia Commons" href="http://commons.wikimedia.org/wiki/File%3AGnome-dev-printer.svg">
-                    <img style="border:none;" width="64" alt="Gnome-dev-printer" src="http://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Gnome-dev-printer.svg/64px-Gnome-dev-printer.svg.png"/>
-                </a>
-                <table>
+                <a href="#" class="btn-print-bill icon-print disabled"></a>
+                <table class="billItems">
+                    <template class="billCategoryRow">
+                        <td colspan="4">
+                            <h3>{ name }</h3>
+                        </td>
+                    </template>
+                    <template class="billItemRow">
+                        <td class="edit">
+                            <a data-id="{ id }" class="remove icon-minus-circled" href="#"></a>
+                            <a data-id="{ id }" class="add icon-plus-circled" href="#"></a>
+                        </td>
+                        <td class="amount">{ amount }x</td>
+                        <td class="item">{ name }</td>
+                        <td class="price">{ price } &euro;</td>
+                    </template>
+                    <template class="billSeparatorRow">
+                        <td colspan="4">
+                            <hr />
+                        </td>
+                    </template>
+                </table>
+                <table class="total">
+                    <tr>
+                        <td>TOTALE</td>
+                        <td class="billTotal price">0,00 &euro;</td>
+                    </tr>
                 </table>
             </aside>
         </section>
         <footer>
+            PI&Egrave; DI PAGINA
         </footer>
     </main>
+    <script type="text/javascript" src="{% static "js/pifquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/riot.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/models/order.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/presenters/order_presenter.js" %}"></script>
 {% endblock %}

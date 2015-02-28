@@ -8,6 +8,7 @@ body {
 a {
   color: white;
   text-decoration: none;
+  outline: none;
 }
 
 hr {
@@ -23,29 +24,25 @@ main {
   -moz-box-shadow: 0 2px 3px black;
   -webkit-box-shadow: 0 2px 3px black;
   box-shadow: 0 2px 3px black;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
-
-header {
-  width: 1000px;
-  height: 190px;
+main header {
+  height: 90px;
   text-align: center;
   background-image: url("http://www.paeseinfesta.it/templates/sonne/css/images/Header.png");
   background-position: center top;
 }
-
-section {
-  width: 1000px;
-}
-
-article {
+main article {
   float: left;
-  width: 630px;
+  width: 580px;
   padding-left: 10px;
 }
-
-aside {
+main aside {
   float: left;
-  width: 310px;
+  width: 360px;
   background-image: url('../img/paper.gif?1356455165');
   font-family: monospace;
   margin-left: 20px;
@@ -53,35 +50,76 @@ aside {
   -moz-box-shadow: 0 2px 3px black;
   -webkit-box-shadow: 0 2px 3px black;
   box-shadow: 0 2px 3px black;
+  position: relative;
 }
-aside h3 {
+main aside .btn-print-bill {
+  font-size: 50px;
+  color: black;
+  position: absolute;
+  right: 0;
+  -moz-transition: color 200ms;
+  -o-transition: color 200ms;
+  -webkit-transition: color 200ms;
+  transition: color 200ms;
+}
+main aside .btn-print-bill.disabled {
+  color: rgba(0, 0, 0, 0.2);
+}
+main aside h3 {
   margin: 0;
 }
-aside table {
+main aside table {
   width: 100%;
 }
-aside .amount {
-  width: 1px;
+main aside .amount {
+  width: 35px;
   text-align: right;
 }
-aside .item {
+main aside .item {
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-align: left;
 }
-aside .price {
-  width: 1px;
+main aside .price {
+  width: 90px;
   text-align: right;
   white-space: nowrap;
 }
-aside .total {
+main aside .edit {
+  width: 55px;
+  text-align: right;
+}
+main aside .edit a {
+  font-size: 22px;
+  width: 20px;
+  height: 22px;
+  display: inline-block;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+main aside .edit a.add {
+  color: green;
+}
+main aside .edit a.remove {
+  color: red;
+}
+main aside .edit a:active {
+  color: black;
+}
+main aside .total {
   font-size: 1.5em;
   text-transform: uppercase;
   white-space: nowrap;
   font-weight: bold;
 }
-
-footer {
+main footer {
   clear: both;
-  width: 1000px;
   text-align: center;
   vertical-align: bottom;
   height: 85px;
@@ -105,8 +143,6 @@ footer {
   box-shadow: 0 2px 3px black;
   margin: 5px 2px;
   text-align: center;
-  background-position: 0 -20px;
-  background-repeat: repeat-x;
   display: inline-block;
   /* non-flexbox browsers */
   display: -webkit-inline-flex;
@@ -116,13 +152,10 @@ footer {
   -webkit-justify-content: center;
   justify-content: center;
 }
-.buttons li:hover {
-  background-image: none;
-}
 .buttons li a {
   display: block;
-  height: 2.5em;
-  width: 138px;
+  height: 60px;
+  width: 124px;
   word-wrap: break-word;
   overflow: auto;
   padding: 5px;
@@ -134,25 +167,85 @@ footer {
 
 .pizza, .category-5 {
   background-color: red;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -webkit-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+.pizza:hover, .category-5:hover {
+  background-color: #ff3333;
+}
+.pizza:active, .category-5:active {
+  background-color: red;
 }
 
 .restaurant, .category-3 {
+  background-color: green;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -webkit-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+.restaurant:hover, .category-3:hover {
+  background-color: #339933;
+}
+.restaurant:active, .category-3:active {
   background-color: green;
 }
 
 .drink, .category-1 {
   background-color: blue;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -webkit-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+.drink:hover, .category-1:hover {
+  background-color: #3333ff;
+}
+.drink:active, .category-1:active {
+  background-color: blue;
 }
 
 .dessert, .category-4 {
+  background-color: orange;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -webkit-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+.dessert:hover, .category-4:hover {
+  background-color: #ffb733;
+}
+.dessert:active, .category-4:active {
   background-color: orange;
 }
 
 .ticket, .category-6 {
   background-color: purple;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -webkit-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+.ticket:hover, .category-6:hover {
+  background-color: #993399;
+}
+.ticket:active, .category-6:active {
+  background-color: purple;
 }
 
 .hotdogs, .category-2 {
+  background-color: brown;
+  -moz-transition: background-color 200ms;
+  -o-transition: background-color 200ms;
+  -webkit-transition: background-color 200ms;
+  transition: background-color 200ms;
+}
+.hotdogs:hover, .category-2:hover {
+  background-color: #b75454;
+}
+.hotdogs:active, .category-2:active {
   background-color: brown;
 }
 
@@ -161,7 +254,7 @@ footer {
 }
 .user-form input {
   height: 1.5em;
-  width: 200px;
+  width: 280px;
   font-size: 1em;
   margin: 15px 0 0 5px;
   border: 1px solid grey;
