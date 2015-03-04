@@ -2,6 +2,7 @@
 @import "compass/css3/flexbox";
 @import "compass/css3/user-interface";
 @import "compass/css3/transition";
+@import "compass/css3/border-radius";
 
 //colors
 $color_shark_approx: #262626;
@@ -16,6 +17,17 @@ $color_seance_approx: purple;
 $gray:  grey;
 $color_pizazz_approx: darkorange;
 $color_brown: brown;
+// new "papeterie" palette
+$pap_blue: #113F8C;
+$pap_sea: #01A4A4;
+$pap_lightblue: #00A1CB;
+$pap_lightgreen: #61AE24;
+$pap_yellow: #D0D102;
+$pap_green: #32742C;
+$pap_magenta: #D70060;
+$pap_red: #E54028;
+$pap_orange: #F18D05;
+$pap_grey: #616161;
 
 //fonts
 $font_0: Arial;
@@ -24,7 +36,7 @@ $font_2: sans-serif;
 $font_3: monospace;
 
 body {
-    font-size: 1.5em;
+    font-size: 20px;
     background: image-url('wood.jpg');
     color: $color_shark_approx;
     font-family: $font_0, $font_1, $font_2;
@@ -36,14 +48,13 @@ a {
 }
 hr {
     clear: both;
-    border: 1px solid $black;
-    margin: 10px 5px;
+    border: 1px solid $color_shark_approx;
+    margin: 10px 0;
 }
 main {
     background: image-url('paper.jpg');
     width: 1000px;
     margin: auto;
-    //box-shadow: 0 2px 3px $black;
     @include box-shadow(0 2px 3px $black);
     @include user-select(none);
     header {
@@ -58,6 +69,9 @@ main {
         float: left;
         width: 580px;
         padding-left: 10px;
+        hr {
+            margin: 10px 3px;
+        }
     }
     aside {
         float: left;
@@ -66,7 +80,6 @@ main {
         font-family: $font_3;
         margin-left: 20px;
         padding: 10px;
-        //box-shadow: 0 2px 3px $black;
         @include box-shadow(0 2px 3px $black);
         position: relative;
         .btn-print-bill {
@@ -81,6 +94,7 @@ main {
         }
         h3 {
             margin: 0;
+            margin-bottom: 5px;
         }
         table {
             width: 100%;
@@ -90,6 +104,7 @@ main {
             text-align: right;
         }
         .item {
+            padding: 5px 0;
             max-width: 150px;
             overflow: hidden;
             white-space: nowrap;
@@ -102,24 +117,27 @@ main {
             white-space: nowrap;
         }
         .edit {
-            width: 55px;
+            width: 53px;
             text-align: right;
             a {
                 font-size: 22px;
                 width: 20px;
-                height: 22px;
                 display: inline-block;
                 @include display-flex(inline-flex);
                 @include align-items(center);
                 @include justify-content(center);
+                @include single-transition(color, 200ms);
                 &.add {
-                    color: green;
+                    color: #308030;
                 }
                 &.remove {
-                    color: red;
+                    color: #FC3030;
                 }
                 &:active {
-                    color: black;
+                    color: shade($pap_grey, 60);
+                }
+                &:before {
+                    margin-left: 3px;
                 }
             }
         }
@@ -148,7 +166,7 @@ main {
     padding: 0;
     margin: 0;
     li {
-        @include box-shadow(0 2px 3px $black);
+        @include box-shadow(0 2px 3px $pap_grey);
         margin: 5px 2px;
         text-align: center;
         display: inline-block; /* non-flexbox browsers */
@@ -158,11 +176,11 @@ main {
 
         a {
             display: block;
-            height: 60px;
-            width: 124px;
+            height: 50px;
+            width: 126px;
             word-wrap: break-word;
             overflow: auto;
-            padding: 5px;
+            padding: 10px 5px;
             &:active {
             }
         }
@@ -175,29 +193,29 @@ main {
     background-color: $color;
     @include single-transition(background-color, 200ms);
     &:hover {
-        background-color: tint($color, 20);
+        background-color: tint($color, 12);
     }
     &:active {
-        background-color: $color;
+        background-color: shade($color, 10);
     }
 }
 .pizza, .category-5 {
-    @include category($color_red_approx);
+    @include category($pap_red);
 }
 .restaurant, .category-3 {
-    @include category($color_japanese_laurel_approx);
+    @include category($pap_green);
 }
 .drink, .category-1 {
-    @include category($color_blue_approx);
+    @include category($pap_blue);
 }
 .dessert, .category-4 {
-    @include category($web_orange);
+    @include category($pap_orange);
 }
 .ticket, .category-6 {
-    @include category($color_seance_approx);
+    @include category($pap_magenta);
 }
 .hotdogs, .category-2 {
-    @include category($color_brown);
+    @include category($pap_sea);
 }
 .user-form {
     float: left;
@@ -205,15 +223,14 @@ main {
         height: 1.5em;
         width: 280px;
         font-size: 1em;
-        margin: 15px 0 0 5px;
-        border: 1px solid $gray;
+        margin: 10px 0 10px 0;
+        border: 1px solid tint($pap_grey, 40);
         padding: 3px 5px;
-        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-        border-radius: 2px;
+        @include border-radius(2px, 2px);
+        @include single-transition(box-shadow, 200ms);
         &:focus {
-            border: 1px solid $color_pizazz_approx;
-            //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-            box-shadow: 0 0 3px $gray inset;
+            border: 1px solid tint($pap_grey, 40);
+            @include box-shadow(0 0 3px tint($pap_grey, 20) inset);
         }
     }
 }

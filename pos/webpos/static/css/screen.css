@@ -1,6 +1,6 @@
 body {
-  font-size: 1.5em;
-  background: url('../img/wood.jpg?1356455167');
+  font-size: 20px;
+  background: url('../img/wood.jpg?1425495767');
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -13,12 +13,12 @@ a {
 
 hr {
   clear: both;
-  border: 1px solid black;
-  margin: 10px 5px;
+  border: 1px solid #262626;
+  margin: 10px 0;
 }
 
 main {
-  background: url('../img/paper.jpg?1356455166');
+  background: url('../img/paper.jpg?1425495767');
   width: 1000px;
   margin: auto;
   -moz-box-shadow: 0 2px 3px black;
@@ -40,10 +40,13 @@ main article {
   width: 580px;
   padding-left: 10px;
 }
+main article hr {
+  margin: 10px 3px;
+}
 main aside {
   float: left;
   width: 360px;
-  background-image: url('../img/paper.gif?1356455165');
+  background-image: url('../img/paper.gif?1425495767');
   font-family: monospace;
   margin-left: 20px;
   padding: 10px;
@@ -67,6 +70,7 @@ main aside .btn-print-bill.disabled {
 }
 main aside h3 {
   margin: 0;
+  margin-bottom: 5px;
 }
 main aside table {
   width: 100%;
@@ -76,6 +80,7 @@ main aside .amount {
   text-align: right;
 }
 main aside .item {
+  padding: 5px 0;
   max-width: 150px;
   overflow: hidden;
   white-space: nowrap;
@@ -88,13 +93,12 @@ main aside .price {
   white-space: nowrap;
 }
 main aside .edit {
-  width: 55px;
+  width: 53px;
   text-align: right;
 }
 main aside .edit a {
   font-size: 22px;
   width: 20px;
-  height: 22px;
   display: inline-block;
   display: -webkit-inline-flex;
   display: inline-flex;
@@ -102,15 +106,22 @@ main aside .edit a {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+  -moz-transition: color 200ms;
+  -o-transition: color 200ms;
+  -webkit-transition: color 200ms;
+  transition: color 200ms;
 }
 main aside .edit a.add {
-  color: green;
+  color: #308030;
 }
 main aside .edit a.remove {
-  color: red;
+  color: #FC3030;
 }
 main aside .edit a:active {
-  color: black;
+  color: #262626;
+}
+main aside .edit a:before {
+  margin-left: 3px;
 }
 main aside .total {
   font-size: 1.5em;
@@ -138,9 +149,9 @@ main footer {
   margin: 0;
 }
 .buttons li {
-  -moz-box-shadow: 0 2px 3px black;
-  -webkit-box-shadow: 0 2px 3px black;
-  box-shadow: 0 2px 3px black;
+  -moz-box-shadow: 0 2px 3px #616161;
+  -webkit-box-shadow: 0 2px 3px #616161;
+  box-shadow: 0 2px 3px #616161;
   margin: 5px 2px;
   text-align: center;
   display: inline-block;
@@ -154,11 +165,11 @@ main footer {
 }
 .buttons li a {
   display: block;
-  height: 60px;
-  width: 124px;
+  height: 50px;
+  width: 126px;
   word-wrap: break-word;
   overflow: auto;
-  padding: 5px;
+  padding: 10px 5px;
 }
 
 .products {
@@ -166,87 +177,87 @@ main footer {
 }
 
 .pizza, .category-5 {
-  background-color: red;
+  background-color: #E54028;
   -moz-transition: background-color 200ms;
   -o-transition: background-color 200ms;
   -webkit-transition: background-color 200ms;
   transition: background-color 200ms;
 }
 .pizza:hover, .category-5:hover {
-  background-color: #ff3333;
+  background-color: #e85641;
 }
 .pizza:active, .category-5:active {
-  background-color: red;
+  background-color: #ce3924;
 }
 
 .restaurant, .category-3 {
-  background-color: green;
+  background-color: #32742C;
   -moz-transition: background-color 200ms;
   -o-transition: background-color 200ms;
   -webkit-transition: background-color 200ms;
   transition: background-color 200ms;
 }
 .restaurant:hover, .category-3:hover {
-  background-color: #339933;
+  background-color: #4a8445;
 }
 .restaurant:active, .category-3:active {
-  background-color: green;
+  background-color: #2d6827;
 }
 
 .drink, .category-1 {
-  background-color: blue;
+  background-color: #113F8C;
   -moz-transition: background-color 200ms;
   -o-transition: background-color 200ms;
   -webkit-transition: background-color 200ms;
   transition: background-color 200ms;
 }
 .drink:hover, .category-1:hover {
-  background-color: #3333ff;
+  background-color: #2d5699;
 }
 .drink:active, .category-1:active {
-  background-color: blue;
+  background-color: #0f387e;
 }
 
 .dessert, .category-4 {
-  background-color: orange;
+  background-color: #F18D05;
   -moz-transition: background-color 200ms;
   -o-transition: background-color 200ms;
   -webkit-transition: background-color 200ms;
   transition: background-color 200ms;
 }
 .dessert:hover, .category-4:hover {
-  background-color: #ffb733;
+  background-color: #f29a23;
 }
 .dessert:active, .category-4:active {
-  background-color: orange;
+  background-color: #d87e04;
 }
 
 .ticket, .category-6 {
-  background-color: purple;
+  background-color: #D70060;
   -moz-transition: background-color 200ms;
   -o-transition: background-color 200ms;
   -webkit-transition: background-color 200ms;
   transition: background-color 200ms;
 }
 .ticket:hover, .category-6:hover {
-  background-color: #993399;
+  background-color: #db1e73;
 }
 .ticket:active, .category-6:active {
-  background-color: purple;
+  background-color: #c10056;
 }
 
 .hotdogs, .category-2 {
-  background-color: brown;
+  background-color: #01A4A4;
   -moz-transition: background-color 200ms;
   -o-transition: background-color 200ms;
   -webkit-transition: background-color 200ms;
   transition: background-color 200ms;
 }
 .hotdogs:hover, .category-2:hover {
-  background-color: #b75454;
+  background-color: #1faeae;
 }
 .hotdogs:active, .category-2:active {
-  background-color: brown;
+  background-color: #009393;
 }
 
 .user-form {
@@ -256,12 +267,20 @@ main footer {
   height: 1.5em;
   width: 280px;
   font-size: 1em;
-  margin: 15px 0 0 5px;
-  border: 1px solid grey;
+  margin: 10px 0 10px 0;
+  border: 1px solid #a0a0a0;
   padding: 3px 5px;
-  border-radius: 2px;
+  -moz-border-radius: 2px / 2px;
+  -webkit-border-radius: 2px 2px;
+  border-radius: 2px / 2px;
+  -moz-transition: box-shadow 200ms;
+  -o-transition: box-shadow 200ms;
+  -webkit-transition: box-shadow 200ms;
+  transition: box-shadow 200ms;
 }
 .user-form input:focus {
-  border: 1px solid darkorange;
-  box-shadow: 0 0 3px grey inset;
+  border: 1px solid #a0a0a0;
+  -moz-box-shadow: 0 0 3px gray inset;
+  -webkit-box-shadow: 0 0 3px gray inset;
+  box-shadow: 0 0 3px gray inset;
 }
