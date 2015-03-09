@@ -80,6 +80,7 @@ function PiFQuery (hConfig) {
             }
         }
         hRequest.open(sMethod, sUrl, bAsync);
+        hRequest.setRequestHeader("HTTP_X_REQUESTED_WITH",'XMLHttpRequest');
         hRequest.send(sCallParams);
     }
 

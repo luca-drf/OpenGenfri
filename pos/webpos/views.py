@@ -1,7 +1,7 @@
 import json
 import re
 from django.shortcuts import render_to_response#, get_object_or_404
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 from webpos.models import Item, Category, BillItem, Bill
 from webpos import dbmanager as dbmng
 from webpos.forms import ReportForm, SearchForm
-
 
 def index(request):
     """Testing view. If the request has an authenticated user token, the view
@@ -99,7 +98,7 @@ def bill_handler(request):
     such list is not empty the bill cannot be committed and it should be
     modified and reposted.
     """
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST':# and request.is_ajax():
         output = {'errors': [],
                   'bill_id': None,
                   'customer_id': 'LOL',
@@ -108,6 +107,8 @@ def bill_handler(request):
                  }
         reqdata = json.loads(request.body)
         return JsonResponse(dbmng.commit_bill(output, reqdata, request.user))
+    else:
+        return HttpResponse('asyvbasvbayvasouvo')
 
 
 def report(request, *args):
