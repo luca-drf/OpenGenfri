@@ -16,18 +16,25 @@ function PiFQuery (hConfig) {
     that.config = {
         ajax : {
             url     : hConfig.ajax.url,
-            method  : hConfig.ajax.method || "GET",
+            method  : hConfig.ajax.method || "POST",
             async   : (hConfig.ajax.async === undefined) ? true : hConfig.ajax.async,
             timeout : hConfig.ajax.timeout || 0
         }
     };
 
-    that.encodeQueryData = function (hParams) {
+    that.encodeQueryData = function (mParams) {
         var aParams = [],
             mKey;
 
-        for (mKey in hParams) {
-            aParams.push(encodeURIComponent(mKey) + "=" + encodeURIComponent(hParams[mKey]));
+        if (typeof mParams === 'object') {
+            for (mKey in mParams) {
+                if (typeof mParams[mKey] === "object") {
+                    mParams[mKey] = JSON.stringify(mParams[mKey]);
+                }
+                aParams.push(encodeURIComponent(mKey) + "=" + encodeURIComponent(mParams[mKey]));
+            }
+        } else {
+            aParams.push(mParams);
         }
 
         return aParams.join("&");
@@ -52,7 +59,7 @@ function PiFQuery (hConfig) {
             throw new Error("No URL specified for the AJAX call!");
         }
 
-        sUrl = sUrl + (hParams.params ? '?' + sCallParams : '');
+        sUrl = sUrl + ((hParams.params && sMethod === 'GET') ? '?' + sCallParams : '');
 
         hRequest.onreadystatechange = function () {
             if (hRequest.readyState === 4) {
@@ -73,7 +80,7 @@ function PiFQuery (hConfig) {
             }
         }
         hRequest.open(sMethod, sUrl, bAsync);
-        hRequest.send();
+        hRequest.send(sCallParams);
     }
 
     that.formatPrice = function (nValue) {

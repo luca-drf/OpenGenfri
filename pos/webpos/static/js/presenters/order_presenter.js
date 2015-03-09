@@ -212,15 +212,18 @@ function orderPresenter (hModel) {
         var hBill = hModel.getBill(),
             nId,
             hData = {
-                customer_name : '',
+                customer_name : elNameInput.value,
                 items         : {}
             };
 
         for (nId in hBill) {
-            hData.items[nId] = hBill[nId].qty;
+            hData.items[hBill[nId].name] = hBill[nId].qty;
         }
-        console.log(hData);
-        window.location.reload();
+        $.pif.ajaxCall({
+            url : '/webpos/commit/',
+            params : JSON.stringify(hData)
+        });
+        //window.location.reload();
     }
 
     function disableEvent (evt) {

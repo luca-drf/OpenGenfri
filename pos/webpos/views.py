@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response#, get_object_or_404
 from django.http import JsonResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.db import transaction
 from django.db.models import Q
 
@@ -74,6 +74,7 @@ def refresh_buttons(request):
 # }
 
 @transaction.atomic
+@csrf_exempt
 #@csrf_protect # Daro: sarebbe figoso integrare CSRF token in questa POST
                # request
 def bill_handler(request):
