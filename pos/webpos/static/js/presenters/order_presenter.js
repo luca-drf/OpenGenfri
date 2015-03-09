@@ -209,6 +209,17 @@ function orderPresenter (hModel) {
             return;
         }
         alert('BILL PRINTED');
+        var hBill = hModel.getBill(),
+            nId,
+            hData = {
+                customer_name : '',
+                items         : {}
+            };
+
+        for (nId in hBill) {
+            hData.items[nId] = hBill[nId].qty;
+        }
+        console.log(hData);
         window.location.reload();
     }
 
