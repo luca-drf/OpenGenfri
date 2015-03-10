@@ -209,7 +209,21 @@ function orderPresenter (hModel) {
             return;
         }
         alert('BILL PRINTED');
-        window.location.reload();
+        var hBill = hModel.getBill(),
+            nId,
+            hData = {
+                customer_name : elNameInput.value,
+                items         : {}
+            };
+
+        for (nId in hBill) {
+            hData.items[hBill[nId].name] = hBill[nId].qty;
+        }
+        $.pif.ajaxCall({
+            url : '/webpos/commit/',
+            params : JSON.stringify(hData)
+        });
+        //window.location.reload();
     }
 
     function disableEvent (evt) {

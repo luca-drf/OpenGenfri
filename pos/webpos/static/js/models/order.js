@@ -84,4 +84,8 @@ function OrderModel () {
         }
         return nCounter === 0;
     }
+
+    that.getBill = function () {
+        return hStore;
+    }
 }
