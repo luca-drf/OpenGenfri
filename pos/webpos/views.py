@@ -66,7 +66,7 @@ def refresh_buttons(request):
 # }
 
 # OUTPUT JSON
-# { "errors": [],
+# { "errors": {},
 #   "customer_id": customer_id,
 #   "date": date,
 #   "total": total
@@ -88,15 +88,16 @@ def bill_handler(request):
 
     Returning a json object of the form:
          
-         { "errors": [],
+         { "errors": {},
            "customer_id": customer_id,
            "date": date,
            "total": total
          }
     
-    Where "errors" points to a list of items that are no longer available. If
-    such list is not empty the bill cannot be committed and it should be
-    modified and reposted.
+    Where "errors" points to a dictionary having the names of the items that
+    are no longer available as keys, and the actual database quantity of such
+    item as value. If such dictionary is not empty the bill cannot be committed
+    and it should be modified and reposted.
     """
     if request.method == 'POST':# and request.is_ajax():
         output = {'errors': [],
