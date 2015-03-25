@@ -50,7 +50,7 @@ class BillTestCase(TestCase):
         self.assertTrue(len(billitems) == 3)
         self.assertEqual(billhd.customer_name, 'Darozzo')        
         self.assertEqual(billhd.server.username, 'Lonfo')
-        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['errors'], {})
         self.assertEqual(result['customer_id'], 'LOL')
         self.assertEqual(result['total'], 33.5)
 
@@ -65,8 +65,8 @@ class BillTestCase(TestCase):
         result = commit_bill(self.output, reqdata, user)
         
         self.assertTrue(len(result['errors']) == 2) 
-        self.assertTrue(('Acqua', 5) in result['errors'])
-        self.assertTrue(('Pasta al ragu', 3) in result['errors'])
+        self.assertTrue(result['errors']['Acqua'] == 5)
+        self.assertTrue(result['errors']['Pasta al ragu'] == 3)
         
 
 

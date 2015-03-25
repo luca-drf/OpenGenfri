@@ -11,22 +11,31 @@ def commit_bill(output, reqdata, user):
 
     for dbitm in dbitms:
         quant = reqquants[dbitm.name]
-        newquant = dbitm.quantity - quant
-        if newquant < 0:
-            output['errors'].append({dbitm.name: dbitm.quantity})
+        db_quant = dbitm.quantity
+        if db_quant is not None:
+            newquant = db_quant - quant
+            if newquant < 0:
+                output['errors'].append((dbitm.name, dbitm.quantity))
+            else:
+                if output['errors']:
+                    continue
+                output['total'] += dbitm.price * quant
+                billitms.append(BillItem(item=dbitm, quantity=quant,
+                                         item_price=dbitm.price))
+                dbitm.quantity = newquant
         else:
-            if output['errors']:
-                continue
             output['total'] += dbitm.price * quant
             billitms.append(BillItem(item=dbitm, quantity=quant,
                                      item_price=dbitm.price))
-            dbitm.quantity = newquant
+
 
     if output['errors']:
         output['total'] = 0
         output['customer_id'] = None
+        output['errors'] = dict(output['errors'])
         return output
     else:
+        output['errors'] = dict(output['errors'])
         billhd.total = output['total']
         billhd.customer_id = output['customer_id']
         billhd.save()
