@@ -1,6 +1,6 @@
 body {
   font-size: 20px;
-  background: url('../img/wood.jpg?1425495767');
+  background: url('../img/wood.jpg?1425769750');
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -18,7 +18,7 @@ hr {
 }
 
 main {
-  background: url('../img/paper.jpg?1425495767');
+  background: url('../img/paper.jpg?1425769750');
   width: 1000px;
   margin: auto;
   -moz-box-shadow: 0 2px 3px black;
@@ -32,8 +32,7 @@ main {
 main header {
   height: 90px;
   text-align: center;
-  background-image: url("http://www.paeseinfesta.it/templates/sonne/css/images/Header.png");
-  background-position: center top;
+  background: url("http://www.paeseinfesta.it/templates/sonne/css/images/Header.png") center top;
 }
 main article {
   float: left;
@@ -46,7 +45,7 @@ main article hr {
 main aside {
   float: left;
   width: 360px;
-  background-image: url('../img/paper.gif?1425495767');
+  background-image: url('../img/paper.gif?1425769750');
   font-family: monospace;
   margin-left: 20px;
   padding: 10px;
@@ -69,8 +68,7 @@ main aside .btn-print-bill.disabled {
   color: rgba(0, 0, 0, 0.2);
 }
 main aside h3 {
-  margin: 0;
-  margin-bottom: 5px;
+  margin: 0 0 5px;
 }
 main aside table {
   width: 100%;
@@ -155,7 +153,6 @@ main footer {
   margin: 5px 2px;
   text-align: center;
   display: inline-block;
-  /* non-flexbox browsers */
   display: -webkit-inline-flex;
   display: inline-flex;
   -webkit-align-items: center;

@@ -13,7 +13,7 @@ def commit_bill(output, reqdata, user):
         quant = reqquants[dbitm.name]
         newquant = dbitm.quantity - quant
         if newquant < 0:
-            output['errors'].append((dbitm.name, dbitm.quantity))
+            output['errors'].append({dbitm.name: dbitm.quantity})
         else:
             if output['errors']:
                 continue

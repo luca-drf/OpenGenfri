@@ -1,17 +1,33 @@
 'use strict';
 
+/**
+ * The presenter class. Stay in the middle between the model (store and AJAX calls) and the view (HTML DOM).
+ * @class
+ * @params {OrderModel} hModel
+ */
 function orderPresenter (hModel) {
     var hMod = hModel,
+        /** @type {HTMLElement} */
         elMain              = document.getElementsByTagName('main')[0],
+        /** @type {HTMLElement} */
         elAside             = document.getElementsByTagName('aside')[0],
+        /** @type {HTMLUListElement} */
         elCategoryContainer = document.getElementsByClassName('categories')[0],
+        /** @type {HTMLUListElement} */
         elProductsContainer = document.getElementsByClassName('products')[0],
+        /** @type {HTMLInputElement} */
         elNameInput         = document.getElementsByClassName('customer-name')[0],
+        /** @type {HTMLAnchorElement} */
         elPrintBtn          = document.getElementsByClassName('btn-print-bill')[0],
+        /** @type {HTMLTableElement} */
         elBillTable         = document.getElementsByClassName('billItems')[0],
+        /** @type {HTMLTableCellElement} */
         elBillTotal         = document.getElementsByClassName('billTotal')[0],
+        /** @type {String} */
         sTplBillCategory    = document.getElementsByClassName('billCategoryRow')[0].innerHTML,
+        /** @type {String} */
         sTplBillItem        = document.getElementsByClassName('billItemRow')[0].innerHTML,
+        /** @type {String} */
         sTplBillSeparator   = document.getElementsByClassName('billSeparatorRow')[0].innerHTML;
 
     function addEventsListener(elNode, sTypes, fnListener) {
@@ -116,9 +132,9 @@ function orderPresenter (hModel) {
     /**
      * Add the items to the right bill container.
      *
-     * @param object hBill The biil data coming from the model.
-     * @param object hBill.items An object containing the items as a value and their id as a key.
-     * @param number hBill.total The total amount of the whole bill.
+     * @param {object} hBill The bill data coming from the model.
+     * @param {object} hBill.items An object containing the items as a value and their id as a key.
+     * @param {number} hBill.total The total amount of the whole bill.
      */
     function addToBill (hBill) {
         elBillTable.innerHTML = '';
@@ -177,9 +193,7 @@ function orderPresenter (hModel) {
     function orderBillByCategories (hItems) {
         var aResults = [],
             nId,
-            aExistCat = [],
-            aCat = hModel.getCategories(),
-            i;
+            aCat = hModel.getCategories();
 
         for (nId in hItems) {
             aResults.push(hItems[nId]);
@@ -208,22 +222,30 @@ function orderPresenter (hModel) {
         if (elBtn.classList.contains('disabled') || hModel.billIsEmpty()) {
             return;
         }
-        alert('BILL PRINTED');
-        var hBill = hModel.getBill(),
-            nId,
-            hData = {
-                customer_name : elNameInput.value,
-                items         : {}
+        /**
+         * Function that handle the AJAX response.
+         * @param {Object}   hResponse The response object.
+         * @param {Object[]} hResponse.errors      An array of articles with errors formatted as {"Article_name" : max_quantity }.
+         * @param {Number}   hResponse.bill_id     The bill ID.
+         * @param {String}   hResponse.customer_id The customer ID.
+         * @param {String}   hResponse.date        The bill timestamp.
+         * @param {Number}   hResponse.total       The validated-by-server bill total.
+         * @returns {Boolean}
+         */
+        var fnAjaxSuccess = function (hResponse) {
+                if (hResponse) {
+                    if (hResponse.errors.length) {
+                        // @todo Check errors in hResponse.errors
+                        return false;
+                    }
+                    // @todo Check total with hResponse.total
+                    // @todo Print the bill with hResponse.customer_id and hResponse.bill_id
+                }
             };
 
-        for (nId in hBill) {
-            hData.items[hBill[nId].name] = hBill[nId].qty;
-        }
-        $.pif.ajaxCall({
-            url : '/webpos/commit/',
-            params : JSON.stringify(hData)
+        hMod.commitBill(elNameInput.value, fnAjaxSuccess, function (nStatus) {
+            // @todo Print an error
         });
-        //window.location.reload();
     }
 
     function disableEvent (evt) {

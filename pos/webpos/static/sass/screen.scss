@@ -60,8 +60,7 @@ main {
     header {
         height: 90px;
         text-align: center;
-        background-image: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png');
-        background-position: center top;
+        background: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png') center top;
     }
     section {
     }
@@ -93,8 +92,7 @@ main {
             }
         }
         h3 {
-            margin: 0;
-            margin-bottom: 5px;
+          margin: 0 0 5px;
         }
         table {
             width: 100%;
@@ -169,7 +167,7 @@ main {
         @include box-shadow(0 2px 3px $pap_grey);
         margin: 5px 2px;
         text-align: center;
-        display: inline-block; /* non-flexbox browsers */
+        display: inline-block;// non-flexbox browsers
         @include display-flex(inline-flex);
         @include align-items(center);
         @include justify-content(center);
