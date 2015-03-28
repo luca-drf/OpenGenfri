@@ -4,6 +4,7 @@
     <script type="text/css" src="{% static "css/foundation.min.css" %}"></script>
     <link href="{% static "css/screen.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="{% static "css/fontello.css" %}" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static "js/jspdf.min.js" %}"></script>
 {% endblock %}
 {% block title %}OpenGenfri > order{% endblock %}
 {% block content %}
@@ -66,8 +67,15 @@
             PI&Egrave; DI PAGINA
         </footer>
     </main>
+    <div class="alert-panel hidden">
+        <div class="icon"></div>
+        <div class="text alert-message"></div>
+        <a href="#" class="button btn-ok-alert">OK</a>
+    </div>
+    <div class="mask hidden"></div>
     <script type="text/javascript" src="{% static "js/pifquery.js" %}"></script>
     <script type="text/javascript" src="{% static "js/riot.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/models/order.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/models/pdf_bill.js" %}"></script>
     <script type="text/javascript" src="{% static "js/presenters/order_presenter.js" %}"></script>
 {% endblock %}

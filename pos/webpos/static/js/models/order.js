@@ -4,7 +4,7 @@
  */
 function OrderModel () {
     var that = riot.observable(this),
-        /** @type {Object} The store. */
+        /** @type {Object} The store. An object formatted as { id_item : { "category" : id_category, "id" : id_item, "name" : "item_name", "price" : item_price, "qty" : item_ordered_qty } } */
         hStore = {},
         /** @type {Object} The categories object formatted as { id_number : { "id" : number, "name" : string, "priority" : number } */
         hCategories = {};
@@ -96,6 +96,19 @@ function OrderModel () {
         return hCategories;
     };
 
+    /**
+     * Retrieve the total amount.
+     * @returns {Number} The total amount.
+     */
+    that.getTotal = function () {
+        return calculateTotal(hStore);
+    };
+
+    /**
+     * Calculate the total amount.
+     * @param {Object} hStore The store.
+     * @returns {Number} The total amount.
+     */
     function calculateTotal (hStore) {
         var nId,
             nTotal = 0;

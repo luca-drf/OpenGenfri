@@ -113,22 +113,22 @@ function PiFQuery (hConfig) {
 
     /**
      * Format a price in the italian way (with comma and 2 decimals: 1,00).
-     * @param {Number} nValue The number to format.
+     * @param {Number} fValue The number to format.
      * @return {String} The formatted price.
      */
-    that.formatPrice = function (nValue) {
-        return that.formatNumber(nValue, 2);
+    that.formatPrice = function (fValue) {
+        return that.formatNumber(fValue, 2);
     };
 
     /**
      * Format (and round) a number in the italian way (with comma).
-     * @param {Number} nValue        The number to format.
+     * @param {Number} fValue        The number to format.
      * @param {Number} [nDecimals=0] The number of decimals.
      * @returns {String} The formatted number.
      */
-    that.formatNumber = function (nValue, nDecimals) {
-        nDecimals = (nDecimals >= 0) ? nDecimals : 0;
-        return parseFloat(nValue).toFixed(nDecimals).replace('.', ',');
+    that.formatNumber = function (fValue, nDecimals) {
+        nDecimals = (nDecimals >= 0) ? parseInt(nDecimals, 10) : 0;
+        return parseFloat(fValue).toFixed(nDecimals).replace('.', ',');
     };
 
     /**
@@ -156,6 +156,8 @@ function PiFQuery (hConfig) {
      */
     that.hide = function (elElement) {
         elElement.style.display = 'none';
+        elElement.style.visibility = 'hidden';
+        elElement.classList.add('hidden');
     };
 
     /**
@@ -163,7 +165,13 @@ function PiFQuery (hConfig) {
      * @param {HTMLElement} elNode
      */
     that.show = function (elElement) {
-        elElement.style.display = '';
+        if (getComputedStyle(elElement).display === 'none') {
+            elElement.style.display = 'block';
+        } else {
+            elElement.style.display = '';
+        }
+        elElement.style.visibility = 'visible';
+        elElement.classList.remove('hidden');
     }
 }
 
