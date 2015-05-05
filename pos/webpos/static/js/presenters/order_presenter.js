@@ -6,9 +6,9 @@
  * @params {OrderModel} hModel
  * @params {PDFModel}   hPdfBill
  */
-function orderPresenter (hModel, hPdfBill) {
+function orderPresenter (hModel) {
     var hMod = hModel,
-        hPdf = hPdfBill,
+        nUpdateLoop,
         /** @type {HTMLElement} */
         elMain              = document.getElementsByTagName('main')[0],
         /** @type {HTMLElement} */
@@ -139,10 +139,10 @@ function orderPresenter (hModel, hPdfBill) {
 
         if (elCategoryBtn.classList.contains('filtered')) {
             elCategoryBtn.classList.remove('filtered');
-            $.pif.forEach(aBtns, $.pif.show); 
+            $.pif.forEach(aBtns, $.pif.show);
         } else {
             elCategoryBtn.classList.add('filtered');
-            $.pif.forEach(aBtns, $.pif.hide); 
+            $.pif.forEach(aBtns, $.pif.hide);
         }
     }
 
@@ -329,8 +329,6 @@ function orderPresenter (hModel, hPdfBill) {
          */
         var fnAjaxSuccess = function (hResponse) {
                 if (validateBillResponse(hResponse)) {
-                    hPdf.createBill(hMod.getBill());
-                    hPdf.print();
                     // @todo Print the PDF bill with hResponse.customer_id and hResponse.bill_id
                 }
             };
@@ -359,7 +357,35 @@ function orderPresenter (hModel, hPdfBill) {
         return hCat;
     }
 
+    function setUploadLoop () {
+        return setInterval(function () {
+            hMod.getUpdates();
+        }, 1000 * 1);
+    }
+
+    function refreshButtons (hItems) {
+        var sName,
+            aValues,
+            nQty,
+            elButton;
+        for (sName in hItems) {
+            aValues = hItems[sName];
+            // aValues[0] = quantity, aValues[1] = price
+            nQty = aValues[0];
+            elButton = document.querySelector("[data-name='" + sName +"']");
+            // @todo Find the button
+            if (nQty !== null && nQty <= 5) {
+                elButton.classList.add('badge');
+                elButton.dataset.badge = nQty;
+            } else {
+                elButton.classList.remove('badge');
+                delete elButton.dataset.badge
+            }
+        }
+    }
+
     hMod.on('addToBill', addToBill);
+    hMod.on('refreshButtons', refreshButtons);
 
     addEventsListener(elCategoryContainer, 'click touch', onClickBtnCategory);
     addEventsListener(elProductsContainer, 'click touch', onClickBtnProduct);
@@ -369,6 +395,7 @@ function orderPresenter (hModel, hPdfBill) {
     addEventsListener(elAlertBtn,          'click touch', onClickBtnAlert);
 
     hMod.setCategories(getCategories());
+    nUpdateLoop = setUploadLoop();
 }
 
-orderPresenter(new OrderModel(), new PDFBillModel());
+orderPresenter(new OrderModel());

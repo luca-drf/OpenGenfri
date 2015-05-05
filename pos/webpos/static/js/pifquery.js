@@ -108,7 +108,15 @@ function PiFQuery (hConfig) {
         };
         hRequest.open(sMethod, sUrl, bAsync);
         hRequest.setRequestHeader("HTTP_X_REQUESTED_WITH",'XMLHttpRequest');
+        hRequest.setRequestHeader("X-CSRFToken", that.getCookie('csrftoken'));
         hRequest.send(sCallParams);
+    };
+
+    that.getCookie = function (sKey) {
+        if (!sKey) {
+            return null;
+        }
+        return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
     };
 
     /**

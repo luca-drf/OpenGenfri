@@ -4,7 +4,6 @@
     <script type="text/css" src="{% static "css/foundation.min.css" %}"></script>
     <link href="{% static "css/screen.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="{% static "css/fontello.css" %}" media="all" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="{% static "js/jspdf.min.js" %}"></script>
 {% endblock %}
 {% block title %}OpenGenfri > order{% endblock %}
 {% block content %}
@@ -23,7 +22,7 @@
                 <hr/>
                 <ul class="products buttons">
                     {% for item in items %}
-                        <li class="category-{{ item.category.id }}">
+                        <li class="category-{{ item.category.id }}" data-name="{{ item.name }}">
                         <a href="#" data-id="{{ item.id }}" data-price="{{ item.price }}" data-category="{{ item.category.id }}">{{ item.name }}</a>
                         </li>
                     {% endfor %}
@@ -76,6 +75,5 @@
     <script type="text/javascript" src="{% static "js/pifquery.js" %}"></script>
     <script type="text/javascript" src="{% static "js/riot.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/models/order.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/models/pdf_bill.js" %}"></script>
     <script type="text/javascript" src="{% static "js/presenters/order_presenter.js" %}"></script>
 {% endblock %}

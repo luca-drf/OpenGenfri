@@ -20,12 +20,15 @@ function OrderModel () {
      * @param {Number} hProd.price    The product price.
      */
     that.addProduct = function (hProd) {
+        var hStoreProd = hStore[hProd.id];
+
         // Insert product into the store.
-        if (!hStore[hProd.id]) {
-            hStore[hProd.id] = hProd;
+        if (!hStoreProd) {
+            hStoreProd = hStore[hProd.id] = hProd;
         } else {
-            hStore[hProd.id].qty += hProd.qty;
+            hStoreProd.qty += hProd.qty;
         }
+        hStoreProd.rowTotal = calculateRowTotal(hStoreProd);
 
         triggerAddToBill();
     };
@@ -37,9 +40,12 @@ function OrderModel () {
      * @param {Number} hProd.qty The product quantity to add.
      */
     that.incrementProduct = function (hProd) {
+        var hStoreProd = hStore[hProd.id];
+
         // Increment product already in the store
-        if (hStore[hProd.id]) {
-            hStore[hProd.id].qty += hProd.qty;
+        if (hStoreProd) {
+            hStoreProd.qty += hProd.qty;
+            hStoreProd.rowTotal = calculateRowTotal(hStoreProd);
             triggerAddToBill();
         }
     };
@@ -57,6 +63,7 @@ function OrderModel () {
         if (hStoreProd) {
             if (hStoreProd.qty > 1) {
                 hStoreProd.qty -= hProd.qty;
+                hStoreProd.rowTotal = calculateRowTotal(hStoreProd);
             } else {
                 deleteProduct(hProd.id);
             }
@@ -65,7 +72,15 @@ function OrderModel () {
     };
 
     /**
-     * Delete a product from teh store.
+     * Calculate the row total amount.
+     * @param {Object} hProd The product data.
+     */
+    function calculateRowTotal (hProd) {
+        return hProd.qty * hProd.price;
+    }
+
+    /**
+     * Delete a product from the store.
      * @param {Number} nId The product ID.
      */
     function deleteProduct (nId) {
@@ -157,5 +172,13 @@ function OrderModel () {
             url : '/webpos/commit/',
             params : JSON.stringify(hData)
         }, fnSuccess, fnFailure);
-    }
+    };
+
+    that.getUpdates = function () {
+        $.pif.ajaxCall({
+            url : '/webpos/refresh/'
+        }, function (hResponse) {
+            that.trigger('refreshButtons', hResponse);
+        });
+    };
 }
