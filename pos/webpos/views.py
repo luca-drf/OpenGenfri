@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response#, get_object_or_404
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.db import transaction
 from django.db.models import Q
 
@@ -46,10 +46,11 @@ def order(request):
 # OUTPUT JSON
 # {"item1": (quantity, price), ...}
 
+@csrf_protect
 def refresh_buttons(request):
     """Tentative view that should be polled by the client in order to refresh
     quantities and prices of the displayed buttons first created by index view"""
-    if request.is_ajax():
+    if request.method == 'POST':# and request.is_ajax():
         items = dict([(item.name, (item.quantity, item.price))
                       for item in Item.objects.filter(enabled=True)])
         return JsonResponse(items)
@@ -73,9 +74,8 @@ def refresh_buttons(request):
 # }
 
 @transaction.atomic
-@csrf_exempt
-#@csrf_protect # Daro: sarebbe figoso integrare CSRF token in questa POST
-               # request
+@csrf_protect # Daro: sarebbe figoso integrare CSRF token in questa POST
+              # request
 def bill_handler(request):
     """Called in order to commit a bill. The POST request must pass a json
     object structured as:

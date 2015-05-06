@@ -6,8 +6,8 @@
 
 //colors
 $color_shark_approx: #262626;
-$white: white;
-$black: black;
+$white: #eeeeee;
+$black: #111111;
 $color_ironstone_80_approx: rgba(127, 74, 55, 0.8);
 $color_red_approx: red;
 $color_japanese_laurel_approx: green;
@@ -40,6 +40,8 @@ body {
     background: image-url('wood.jpg');
     color: $color_shark_approx;
     font-family: $font_0, $font_1, $font_2;
+    margin: 0;
+    padding: 0;
 }
 a {
     color: $white;
@@ -60,8 +62,7 @@ main {
     header {
         height: 90px;
         text-align: center;
-        background-image: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png');
-        background-position: center top;
+        background: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png') center top;
     }
     section {
     }
@@ -93,8 +94,7 @@ main {
             }
         }
         h3 {
-            margin: 0;
-            margin-bottom: 5px;
+          margin: 0 0 5px;
         }
         table {
             width: 100%;
@@ -169,10 +169,30 @@ main {
         @include box-shadow(0 2px 3px $pap_grey);
         margin: 5px 2px;
         text-align: center;
-        display: inline-block; /* non-flexbox browsers */
+        display: inline-block;// non-flexbox browsers
         @include display-flex(inline-flex);
         @include align-items(center);
         @include justify-content(center);
+
+        &.badge {
+            position: relative;
+
+            &[data-badge]:after{
+                content: attr(data-badge);
+                position: absolute;
+                top: -3px;
+                right: -3px;
+                font-size: .7em;
+                background: $pap_red;
+                color: $white;
+                width: 18px;
+                height:18px;
+                text-align: center;
+                line-height: 18px;
+                border-radius: 50%;
+                @include box-shadow(0 0 1px $pap_grey);
+            }
+        }
 
         a {
             display: block;
@@ -233,4 +253,55 @@ main {
             @include box-shadow(0 0 3px tint($pap_grey, 20) inset);
         }
     }
+}
+.alert-panel {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    $panelWidth: 400px;
+    margin-left: -($panelWidth / 2);
+    width: $panelWidth;
+
+    background-color: $white;
+    z-index: 50;
+
+    .text {
+        text-align: center;
+        margin: 10px;
+    }
+    .icon {
+    }
+    .button {
+        display: block;
+        width: 100%;
+        height: 2em;
+        color: $black;
+        border-top: 1px solid $black;
+
+        text-align: center;
+        font-size: 1em;
+        line-height: 2em;
+
+        @include single-transition(background-color, 200ms);
+        &:hover {
+            background-color: shade($white, 10);
+        }
+        &:active,  {
+            background-color: shade($white, 20);
+        }
+    }
+}
+.mask {
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(17, 17, 17, 0.5);
+    z-index: 40;
+    @include transition(opacity 200ms, visibility 200ms);
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
 }

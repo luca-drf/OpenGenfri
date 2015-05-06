@@ -22,7 +22,7 @@
                 <hr/>
                 <ul class="products buttons">
                     {% for item in items %}
-                        <li class="category-{{ item.category.id }}">
+                        <li class="category-{{ item.category.id }}" data-name="{{ item.name }}">
                         <a href="#" data-id="{{ item.id }}" data-price="{{ item.price }}" data-category="{{ item.category.id }}">{{ item.name }}</a>
                         </li>
                     {% endfor %}
@@ -66,6 +66,12 @@
             PI&Egrave; DI PAGINA
         </footer>
     </main>
+    <div class="alert-panel hidden">
+        <div class="icon"></div>
+        <div class="text alert-message"></div>
+        <a href="#" class="button btn-ok-alert">OK</a>
+    </div>
+    <div class="mask hidden"></div>
     <script type="text/javascript" src="{% static "js/pifquery.js" %}"></script>
     <script type="text/javascript" src="{% static "js/riot.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/models/order.js" %}"></script>
