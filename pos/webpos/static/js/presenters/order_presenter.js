@@ -1,17 +1,43 @@
 'use strict';
 
+/**
+ * The presenter class. Stay in the middle between the model (store and AJAX calls) and the view (HTML DOM).
+ * @class
+ * @params {OrderModel} hModel
+ * @params {PDFModel}   hPdfBill
+ */
 function orderPresenter (hModel) {
     var hMod = hModel,
+        nUpdateLoop,
+        /** @type {HTMLElement} */
         elMain              = document.getElementsByTagName('main')[0],
+        /** @type {HTMLElement} */
         elAside             = document.getElementsByTagName('aside')[0],
+        /** @type {HTMLUListElement} */
         elCategoryContainer = document.getElementsByClassName('categories')[0],
+        /** @type {HTMLUListElement} */
         elProductsContainer = document.getElementsByClassName('products')[0],
+        /** @type {HTMLInputElement} */
         elNameInput         = document.getElementsByClassName('customer-name')[0],
+        /** @type {HTMLAnchorElement} */
         elPrintBtn          = document.getElementsByClassName('btn-print-bill')[0],
+        /** @type {HTMLAnchorElement} */
+        elAlertBtn          = document.getElementsByClassName('btn-ok-alert')[0],
+        /** @type {HTMLTableElement} */
         elBillTable         = document.getElementsByClassName('billItems')[0],
+        /** @type {HTMLTableCellElement} */
         elBillTotal         = document.getElementsByClassName('billTotal')[0],
+        /** @type {HTMLDivElement} */
+        elAlertPanel        = document.getElementsByClassName('alert-panel')[0],
+        /** @type {HTMLDivElement} */
+        elAlertMessage      = document.getElementsByClassName('alert-message')[0],
+        /** @type {HTMLDivElement} */
+        elMask              = document.getElementsByClassName('mask')[0],
+        /** @type {String} */
         sTplBillCategory    = document.getElementsByClassName('billCategoryRow')[0].innerHTML,
+        /** @type {String} */
         sTplBillItem        = document.getElementsByClassName('billItemRow')[0].innerHTML,
+        /** @type {String} */
         sTplBillSeparator   = document.getElementsByClassName('billSeparatorRow')[0].innerHTML;
 
     function addEventsListener(elNode, sTypes, fnListener) {
@@ -49,9 +75,39 @@ function orderPresenter (hModel) {
             } else if (evt.target.classList.contains('remove')) {
                 decrementProduct(evt.target);
             } else if (evt.target === elPrintBtn) {
-                printBill(evt.target);
+                sendBill(evt.target);
             }
         }
+    }
+
+    function onClickBtnAlert (evt) {
+        evt.preventDefault();
+        if (evt.target.tagName === 'A') {
+            hideAlert();
+        }
+    }
+
+    /**
+     * Show the alert popup.
+     * @param {String}  sText        The text to show into it.
+     * @param {Boolean} [bShow=true] If `false` hide the alert.
+     */
+    function showAlert (sText, bShow) {
+        if (bShow === false) {
+            hideAlert();
+        } else {
+            elAlertMessage.innerHTML = sText || '';
+            elAlertPanel.classList.remove('hidden');
+            elMask.classList.remove('hidden');
+        }
+    }
+
+    /**
+     * Hide the alert popup.
+     */
+    function hideAlert () {
+        elAlertPanel.classList.add('hidden');
+        elMask.classList.add('hidden');
     }
 
     function onWriteName (evt) {
@@ -61,6 +117,10 @@ function orderPresenter (hModel) {
         }
     }
 
+    /**
+     * Enable the "print bill" button.
+     * @param {Boolean} [bEnable=true] `false` to disable it.
+     */
     function enablePrintButton (bEnable) {
         if (bEnable === false) {
             elPrintBtn.classList.add('disabled');
@@ -69,34 +129,46 @@ function orderPresenter (hModel) {
         }
     }
 
-    function filterCategory (elButton) {
-        var nId = parseInt(elButton.dataset.id, 10),
+    /**
+     * Filter articles via category button.
+     * @param {HTMLAnchorElement} elCategoryBtn The category button.
+     */
+    function filterCategory (elCategoryBtn) {
+        var nId = parseInt(elCategoryBtn.dataset.id, 10),
             aBtns = document.getElementsByClassName('products')[0].getElementsByClassName('category-' + nId);
 
-        if (elButton.classList.contains('filtered')) {
-            elButton.classList.remove('filtered');
-            $.pif.forEach(aBtns, $.pif.show); 
+        if (elCategoryBtn.classList.contains('filtered')) {
+            elCategoryBtn.classList.remove('filtered');
+            $.pif.forEach(aBtns, $.pif.show);
         } else {
-            elButton.classList.add('filtered');
-            $.pif.forEach(aBtns, $.pif.hide); 
+            elCategoryBtn.classList.add('filtered');
+            $.pif.forEach(aBtns, $.pif.hide);
         }
     }
 
-    function orderProduct (elButton) {
-        var nId    = parseInt(elButton.dataset.id,       10),
-            nIdCat = parseInt(elButton.dataset.category, 10);
+    /**
+     * Order a product via it's button.
+     * @param {HTMLAnchorElement} elProductBtn The product button.
+     */
+    function orderProduct (elProductBtn) {
+        var nId    = parseInt(elProductBtn.dataset.id,       10),
+            nIdCat = parseInt(elProductBtn.dataset.category, 10);
 
         hMod.addProduct({
             id       : nId,
             category : nIdCat,
-            name     : elButton.innerHTML,
+            name     : elProductBtn.innerHTML,
             qty      : 1,
-            price    : parseFloat(elButton.dataset.price)
+            price    : parseFloat(elProductBtn.dataset.price)
         });
     }
 
-    function incrementProduct (elButton) {
-        var nId = parseInt(elButton.dataset.id, 10);
+    /**
+     * Increment a product amount via it's button.
+     * @param {HTMLAnchorElement} elProductBtn The product button.
+     */
+    function incrementProduct (elProductBtn) {
+        var nId = parseInt(elProductBtn.dataset.id, 10);
 
         hMod.incrementProduct({
             id  : nId,
@@ -116,9 +188,9 @@ function orderPresenter (hModel) {
     /**
      * Add the items to the right bill container.
      *
-     * @param object hBill The biil data coming from the model.
-     * @param object hBill.items An object containing the items as a value and their id as a key.
-     * @param number hBill.total The total amount of the whole bill.
+     * @param {object} hBill The bill data coming from the model.
+     * @param {object} hBill.items An object containing the items as a value and their id as a key.
+     * @param {number} hBill.total The total amount of the whole bill.
      */
     function addToBill (hBill) {
         elBillTable.innerHTML = '';
@@ -177,9 +249,7 @@ function orderPresenter (hModel) {
     function orderBillByCategories (hItems) {
         var aResults = [],
             nId,
-            aExistCat = [],
-            aCat = hModel.getCategories(),
-            i;
+            aCat = hModel.getCategories();
 
         for (nId in hItems) {
             aResults.push(hItems[nId]);
@@ -204,26 +274,68 @@ function orderPresenter (hModel) {
         return aResults;
     }
 
-    function printBill (elBtn) {
+    /**
+     * Validate the server response after the bill is sent to it.
+     * @param {Object} hResponse The response object.
+     * @param {Object} hResponse.errors      An object of articles with errors formatted as `{"Article_name" : max_quantity, ...}`.
+     * @param {Number} hResponse.bill_id     The bill ID.
+     * @param {String} hResponse.customer_id The customer ID.
+     * @param {String} hResponse.date        The bill timestamp.
+     * @param {Number} hResponse.total       The validated-by-server bill total.
+     * @return {Boolean} `true` if everything is fine, `false` and print an error otherwise.
+     */
+    function validateBillResponse (hResponse) {
+        // Response missing
+        if (!hResponse) {
+            // Items missing
+            showAlert("<p>Il server non ha risposto correttamente</p>Ritenta o chiama un tecnico");
+            return false;
+        }
+        if (!hResponse.bill_id) {
+            var sName,
+                aTxtSupply = [];
+
+            for (sName in hResponse.errors) {
+                aTxtSupply.push(hResponse.errors[sName] + ' ' + sName);
+            }
+
+            showAlert("<p>Disponibilità non sufficienti</p>È rimasto " + aTxtSupply.join('; '));
+            return false;
+        }
+        // Total amount changed
+        if (parseFloat(hResponse.total) !== hMod.getTotal()) {
+            showAlert("<p>Totale variato</p>Il totale aggiornato è di " + $.pif.formatPrice(parseFloat(hResponse.total)) + " €");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Send the bill to the server and validate the response.
+     * @param elBtn
+     */
+    function sendBill (elBtn) {
         if (elBtn.classList.contains('disabled') || hModel.billIsEmpty()) {
             return;
         }
-        alert('BILL PRINTED');
-        var hBill = hModel.getBill(),
-            nId,
-            hData = {
-                customer_name : elNameInput.value,
-                items         : {}
+        /**
+         * Function that handle the AJAX response.
+         * @param {Object} hResponse The response object.
+         * @param {Object} hResponse.errors      An object of articles with errors formatted as `{"Article_name" : max_quantity, ...}`.
+         * @param {Number} hResponse.bill_id     The bill ID.
+         * @param {String} hResponse.customer_id The customer ID.
+         * @param {String} hResponse.date        The bill timestamp.
+         * @param {Number} hResponse.total       The validated-by-server bill total.
+         */
+        var fnAjaxSuccess = function (hResponse) {
+                if (validateBillResponse(hResponse)) {
+                    // @todo Print the PDF bill with hResponse.customer_id and hResponse.bill_id
+                }
             };
 
-        for (nId in hBill) {
-            hData.items[hBill[nId].name] = hBill[nId].qty;
-        }
-        $.pif.ajaxCall({
-            url : '/webpos/commit/',
-            params : JSON.stringify(hData)
+        hMod.commitBill(elNameInput.value, fnAjaxSuccess, function (nStatus) {
+            showAlert("<p>Errore di comunicazione col server</p>Ritenta o chiama un tecnico");
         });
-        //window.location.reload();
     }
 
     function disableEvent (evt) {
@@ -245,15 +357,45 @@ function orderPresenter (hModel) {
         return hCat;
     }
 
+    function setUploadLoop () {
+        return setInterval(function () {
+            hMod.getUpdates();
+        }, 1000 * 1);
+    }
+
+    function refreshButtons (hItems) {
+        var sName,
+            aValues,
+            nQty,
+            elButton;
+        for (sName in hItems) {
+            aValues = hItems[sName];
+            // aValues[0] = quantity, aValues[1] = price
+            nQty = aValues[0];
+            elButton = document.querySelector("[data-name='" + sName +"']");
+            // @todo Find the button
+            if (nQty !== null && nQty <= 5) {
+                elButton.classList.add('badge');
+                elButton.dataset.badge = nQty;
+            } else {
+                elButton.classList.remove('badge');
+                delete elButton.dataset.badge
+            }
+        }
+    }
+
     hMod.on('addToBill', addToBill);
+    hMod.on('refreshButtons', refreshButtons);
 
     addEventsListener(elCategoryContainer, 'click touch', onClickBtnCategory);
     addEventsListener(elProductsContainer, 'click touch', onClickBtnProduct);
     addEventsListener(elAside,             'click touch', onClickMenu);
     addEventsListener(elNameInput,         'keyup',       onWriteName);
     addEventsListener(elMain,              'dragstart',   disableEvent);
+    addEventsListener(elAlertBtn,          'click touch', onClickBtnAlert);
 
     hMod.setCategories(getCategories());
+    nUpdateLoop = setUploadLoop();
 }
 
 orderPresenter(new OrderModel());
