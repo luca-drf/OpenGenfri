@@ -6,6 +6,19 @@ Copyright (C) 2014 Simone Salsi
 
 For license information, see LICENSE
 
+
+Installation
+------------
+We recommend you to use [virtualenv](http://www.virtualenv.org/en/latest/).
+Once in your environment:
+
+    % git clone https://github.com/thedos1701/OpenGenfri
+    % cd OpenGenfri
+    % pip install -r requirements.txt
+    % cd pos
+    % ./manage.py syncdb
+
+
 Contributors
 ------------
 Simone Salsi, Luca Da Rin Fioretto, Lorenzo Beltrami
