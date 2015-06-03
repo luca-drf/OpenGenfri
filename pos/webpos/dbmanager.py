@@ -28,7 +28,6 @@ def commit_bill(output, reqdata, user):
             billitms.append(BillItem(item=dbitm, quantity=quant,
                                      item_price=dbitm.price))
 
-
     if output['errors']:
         output['total'] = 0
         output['customer_id'] = None

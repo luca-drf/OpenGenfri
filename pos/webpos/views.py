@@ -1,5 +1,6 @@
 import json
 import re
+from easy_pdf.rendering import render_to_pdf_response
 from django.shortcuts import render_to_response#, get_object_or_404
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -107,9 +108,21 @@ def bill_handler(request):
                   'total': 0
                  }
         reqdata = json.loads(request.body)
-        return JsonResponse(dbmng.commit_bill(output, reqdata, request.user))
+        repdata = dbmng.commit_bill(output, reqdata, request.user)
+        if repdata['errors']:
+            return JsonResponse(repdata)
+        # else:
+        #     return render_to_pdf_response(request,
+        #                                   'webpos/pdf_template.html',
+        #                                   reqdata)
     else:
         return HttpResponse('asyvbasvbayvasouvo')
+
+
+def pdf_view(request):
+    bill = Bill.objects.get(customer_name='Simo')
+    context = {'bill': bill}
+    return render_to_pdf_response(request, 'webpos/pdf_template.html', context)
 
 
 def report(request, *args):

@@ -11,6 +11,6 @@ urlpatterns = patterns('',
     url(r'^bill/(?P<pk>\d+)/$', login_required(views.BillDetailView.as_view()),
         name='bill-detail'),
     url(r'^search/(\?search=[0-9a-zA-Z%]*)?$', login_required(views.search), name='search'),
-
+    url(r'^pdf/$', views.pdf_view, name='pdf'),
 
 )
