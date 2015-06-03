@@ -73,3 +73,7 @@ class BillItem(models.Model):
     item = models.ForeignKey('Item')
     quantity = models.PositiveSmallIntegerField()
     item_price = models.DecimalField(max_digits=12, decimal_places=2)
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.item_price

@@ -120,11 +120,8 @@ def bill_handler(request):
 
 
 def pdf_view(request):
-    context = { 'customer_name': 'Daro',
-                'items': {'item1': 1,
-                          'item2': 2
-                         }
-              }
+    bill = Bill.objects.get(customer_name='Simo')
+    context = {'bill': bill}
     return render_to_pdf_response(request, 'webpos/pdf_template.html', context)
 
 
