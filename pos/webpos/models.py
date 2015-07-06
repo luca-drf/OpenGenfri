@@ -71,6 +71,7 @@ class BillItem(models.Model):
     id = models.AutoField(primary_key=True)
     bill = models.ForeignKey('Bill')
     item = models.ForeignKey('Item')
+    category = models.ForeignKey('Category',null=True)
     quantity = models.PositiveSmallIntegerField()
     item_price = models.DecimalField(max_digits=12, decimal_places=2)
 

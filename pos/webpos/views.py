@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from webpos.models import Item, Category, BillItem, Bill
 from webpos import dbmanager as dbmng
 from webpos.forms import ReportForm, SearchForm
-
+from easy_pdf.views import PDFTemplateView
 def index(request):
     """Testing view. If the request has an authenticated user token, the view
     returns a rendered page with all enabled items in the database and the
@@ -120,9 +120,10 @@ def bill_handler(request):
 
 
 def pdf_view(request):
-    bill = Bill.objects.get(customer_name='Simo')
-    context = {'bill': bill}
-    return render_to_pdf_response(request, 'webpos/pdf_template.html', context)
+    bill = Bill.objects.get(customer_name='fedfol')
+    items_ordered_by_category =bill.billitem_set.all().order_by('category')
+    context = {'bill':items_ordered_by_category}
+    return render_to_pdf_response(request, 'webpos/pdf_template_new.html', context)
 
 
 def report(request, *args):
@@ -199,3 +200,6 @@ def search(request, *args):
         return render_to_response('webpos/search.html', {'form': form,
                                                          'qs_empty': qs_empty})
 
+def HelloPDFView(request):
+    template_name = "webpos/base_pdf.html"
+    return render_to_pdf_response(request,template_name,{})

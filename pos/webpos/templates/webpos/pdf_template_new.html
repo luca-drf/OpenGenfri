@@ -1,0 +1,25 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block content %}
+    <div id="content">
+        <div class="main">
+            <h1>Bill #{{bill.id}}</h1>
+            <ul>
+                <li>Customer Name: {{bill.customer_name}}</li>
+                <li>Customer ID: {{bill.customer_id}}</li>
+                <li>Server: {{bill.server}}</li>
+                <li>Date: {{bill.date}}</li>
+            </ul>
+            <h2> Items:</h2>
+            <ul>
+		 {% for billitem in bill %}
+                <li>{{billitem.item}} x{{billitem.quantity}}
+                    ${{billitem.item_price}} = </br>
+                    ${{billitem.total_cost}}</li>
+			{% ifchanged billitem.category %}<hr>{% endifchanged%}
+            {% endfor %}
+            </ul>
+            <h4>Total: {{bill.total}}</h4>
+        </div>
+    </div>
+{% endblock %}
