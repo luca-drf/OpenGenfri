@@ -9,7 +9,7 @@ For license information, see LICENSE
 
 Installation
 ------------
-We recommend you to use [virtualenv](http://www.virtualenv.org/en/latest/).
+We recommend you to use [virtualenv] (http://www.virtualenv.org/en/latest/).
 Once in your environment:
 
     % git clone https://github.com/thedos1701/OpenGenfri
