@@ -110,13 +110,20 @@ def bill_handler(request):
                   'total': 0
                  }
         reqdata = json.loads(request.body)
-        repdata = dbmng.commit_bill(output, reqdata, request.user)
+        repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
         if repdata['errors']:
             return JsonResponse(repdata)
-        # else:
-        #     return render_to_pdf_response(request,
-        #                                   'webpos/pdf_template.html',
-        #                                   reqdata)
+        else:
+            items = bill.billitem_set.all()
+            billitems = {}
+            for cat in Category.objects.all():
+                itemlist = list(items.filter(category=cat)) 
+                if itemlist:
+                    billitems[cat] = itemlist
+            context = {'bill': bill, 'billitems': billitems}
+            return render_to_pdf_response(request,
+                                          'webpos/comanda.html',
+                                          context)
     else:
         return HttpResponse(status=400)
 

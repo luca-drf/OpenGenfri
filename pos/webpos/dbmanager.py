@@ -44,7 +44,7 @@ def commit_bill(output, reqdata, user):
             billitm.bill = billhd
             billitm.save()
             dbitm.save()
-        return output
+        return output, billhd
 
 
 def undo_bill(billid, user):
