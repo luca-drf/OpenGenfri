@@ -4,7 +4,7 @@ from webpos.models import Item, Bill, BillItem
 
 def commit_bill(output, reqdata, user):
     billhd = Bill(customer_name=reqdata['customer_name'],
-                  server=User.objects.get(pk=user.id))
+                  server=User.objects.get(pk=user.id).username)
     billitms = []
     reqquants = reqdata['items']
     dbitms = Item.objects.filter(name__in=reqquants.keys())
@@ -45,3 +45,13 @@ def commit_bill(output, reqdata, user):
             billitm.save()
             dbitm.save()
         return output
+
+
+def undo_bill(billid, user):
+    bill = Bill.objects.get(pk=billid)
+    for billitem in bill.billitem_set.all():
+        billitem.item.quantity += billitem.quantity
+        billitem.item.save()
+    bill.deleted_by = user.username
+    bill.save()
+    return billid
