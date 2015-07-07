@@ -1,0 +1,74 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block content %}
+    <div id="content">
+        <div class="main">
+		<h1>COPIA CLIENTE</h1>
+		<h2>Scontrino: # {{ bill.id }}
+            <ul>
+                <li>Customer Name: {{bill.customer_name}}</li>
+                <li>Customer ID: {{bill.customer_id}}</li>
+                <li>Server: {{bill.server}}</li>
+                <li>Date: {{bill.date}}</li>
+            	<li>Total: {{bill.total}}</li>
+            </ul>
+            <h2>Riepilogo ordine:</h2>
+	    <table>
+		 {% for k,v in billitems.items %}
+		 <tr><td>{{ k }}</td></tr>
+		    <tr>
+			    <td>QTY.</td>
+			    <td>PRODOTTO</td>
+			    <td>PREZZO U.</td>
+			    <td>PREZZO TOT.</td>
+			</tr>
+		 {% for item in v %}
+		<tr>
+			<td>{{item.quantity}}</td>
+			<td>{{item.item}}</td>
+			<td>{{item.item_price}}</td> 
+			<td>{{item.total_cost}}</td>
+		</tr>
+		{% endfor %}
+            {% endfor %}
+	    </table>
+	    <div> <pdf:nextpage /></div>
+		 {% for k,v in billitems.items %}
+	    <table>
+		 <tr><td><h1>{{ k }}</h1></td></tr>
+	    </table>
+	    <hr />
+	    <table>
+		 <tr>
+			 <td><h3>Scontrino #</h3></td>
+			 <td><h3>Nome cliente</h3></td>
+			 <td><h3>Tavolo</h3></td>
+		 </tr>
+		 <tr>
+			 <td><h3>{{ bill.id}}</h3></td>
+			 <td><h3>{{ bill.customer_name }}</h3></td>
+			 <td><h3>{{ bill.customer_id }}</h3></td>
+		</tr>
+	    </table>
+	    <hr />
+	    <table>
+		    <tr>
+			    <td>QTY.</td>
+			    <td>PRODOTTO</td>
+			    <td>PREZZO U.</td>
+			    <td>PREZZO TOT.</td>
+			</tr>
+		 {% for item in v %}
+		<tr>
+			<td>{{item.quantity}}</td>
+			<td>{{item.item}}</td>
+			<td>{{item.item_price}}</td> 
+			<td>{{item.total_cost}}</td>
+		</tr>
+	    </table>
+		{% endfor %}
+	    <div> <pdf:nextpage /></div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
