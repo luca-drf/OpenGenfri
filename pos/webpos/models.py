@@ -58,7 +58,16 @@ class Bill(models.Model):
     customer_name = models.CharField(max_length=40)
     date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=12, decimal_places=2)
-    server = models.ForeignKey(User)
+    server = models.CharField(max_length=40)
+    deleted_by = models.CharField(max_length=40, blank=True)
+
+    def is_committed(self):
+        if self.deleted_by == '':
+            return True
+        else:
+            return False
+    is_committed.boolean = True
+    is_committed.short_description = 'Validated'
 
     def __str__(self):
         return self.customer_name + ' ' + '#' + str(self.id)
@@ -71,7 +80,7 @@ class BillItem(models.Model):
     id = models.AutoField(primary_key=True)
     bill = models.ForeignKey('Bill')
     item = models.ForeignKey('Item')
-    category = models.ForeignKey('Category',null=True)
+    category = models.ForeignKey('Category', null=True)
     quantity = models.PositiveSmallIntegerField()
     item_price = models.DecimalField(max_digits=12, decimal_places=2)
 

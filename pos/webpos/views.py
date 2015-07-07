@@ -14,6 +14,9 @@ from webpos.models import Item, Category, BillItem, Bill
 from webpos import dbmanager as dbmng
 from webpos.forms import ReportForm, SearchForm
 from easy_pdf.views import PDFTemplateView
+
+from django.template import RequestContext
+
 def index(request):
     """Testing view. If the request has an authenticated user token, the view
     returns a rendered page with all enabled items in the database and the
@@ -121,9 +124,20 @@ def bill_handler(request):
 
 def pdf_view(request):
     bill = Bill.objects.get(customer_name='fedfol')
-    items_ordered_by_category =bill.billitem_set.all().order_by('category')
-    context = {'bill':items_ordered_by_category}
+    items_ordered_by_category = bill.billitem_set.all().order_by('category')
+    context = {'bill': items_ordered_by_category}
     return render_to_pdf_response(request, 'webpos/pdf_template_new.html', context)
+
+
+@transaction.atomic
+@csrf_protect
+def undo_bill(request):
+    if request.POST.has_key('billid'):
+        user = request.user
+        billid = request.POST.get('billid', None)
+        message = dbmng.undo_bill(billid, user)
+        context = {'message': message}
+        return JsonResponse(context)
 
 
 def report(request, *args):
@@ -136,7 +150,8 @@ def report(request, *args):
             sel_category = form.cleaned_data['sel_category']
             date_start = form.cleaned_data['date_start']
             date_end = form.cleaned_data['date_end']
-            qs = BillItem.objects.all().order_by('item__category', 'bill__date')
+            qs = BillItem.objects.all().filter(bill__deleted_by='')
+            qs = qs.order_by('item__category', 'bill__date')
             if sel_category:
                 qs = qs.filter(item__category=sel_category)
             if date_start:
@@ -174,32 +189,35 @@ def search(request, *args):
     if request.GET:
         form = SearchForm(request.GET)
         if form.is_valid():
+            qs = Bill.objects.all().filter(deleted_by='')
             search_text = form.cleaned_data['search']
-            if re.match(r'[A-Za-z ]+', search_text):
-                qserver = Q(server__username__contains=search_text)
+            if re.match(r'\w+', search_text):
+                qserver = Q(server__contains=search_text)
                 qcustomer = Q(customer_name__contains=search_text)
 
-                qs = Bill.objects.filter(qserver | qcustomer)
+                qs = qs.filter(qserver | qcustomer)
             
-            elif re.match(r'[0-9]+', search_text):
-                qs = Bill.objects.filter(pk=int(search_text))
-            
+            elif re.match(r'\#([0-9]+)', search_text):
+                number = re.match(r'\#([0-9]+)', search_text).group(1)
+                qs = qs.filter(pk=int(number))
+
             if not qs.exists():
                 qs_empty = True
+
             return render_to_response('webpos/search.html',
                                       {'form': form,
                                        'qs_empty': qs_empty,
-                                       'queryset': qs})
+                                       'queryset': qs},
+                                      context_instance=RequestContext(request))
 
         else:
             return render_to_response('webpos/search.html',
                                       {'form': 'No!',
-                                       'qs_empty': qs_empty})
+                                       'qs_empty': qs_empty},
+                                      context_instance=RequestContext(request))
     else:
         form = SearchForm()
         return render_to_response('webpos/search.html', {'form': form,
-                                                         'qs_empty': qs_empty})
+                                                         'qs_empty': qs_empty},
+                                                         context_instance=RequestContext(request))
 
-def HelloPDFView(request):
-    template_name = "webpos/base_pdf.html"
-    return render_to_pdf_response(request,template_name,{})

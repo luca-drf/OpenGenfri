@@ -1,7 +1,11 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}OpenGenfri > search{% endblock %}
+{% block head %}
+{% endblock %}
 {% block content %}
 <p>Search Customer's name, bill number or server.</p>
+<p>Note: To search for bill number, enter '#' before the number (e.g. #19)</p>
 <form action="" method="get">
 {{ form }}
 <input type="submit" value="Search" />
@@ -24,12 +28,41 @@
         <td><a href="{% url 'webpos:bill-detail' bill.id %}">{{bill.id}}</a></td>
         <td>{{bill.customer_name}}</td>
         <td>{{bill.date}}</td>
-        <td>{{bill.server.username}}</td>
+        <td>{{bill.server}}</td>
         <td>${{bill.total}}</td>
+        <td>
+            <form method="post" name="">
+                {% csrf_token %}
+                <input type="button" class="undo-bill" name="{{bill.id}}" value="Undo Bill" />
+            </form>
+        </td>
     </tr>
     {% endfor %}
 </table>
+<script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+ $('.undo-bill').click(function(){
+      $.ajax({
+               type: "POST",
+               url: "{% url 'webpos:undo-bill' %}",
+               data: { billid: $(this).attr('name'),
+                       csrfmiddlewaretoken: '{{ csrf_token }}'
+               },
+               dataType: "json",
+               success: function(json) {
+                      alert('Bill #' + json.message + ' deleted!');
+                },
+                error: function(xhr,errmsg,err) {
+                       alert(xhr.status + ": " + xhr.responseText);
+                }
+          });
+          return false; 
+    });
+});
+</script>
 {% elif qs_empty %}
 <p>No bills found.</p>
 {% endif %}
 {% endblock %}
+
