@@ -118,7 +118,7 @@ def bill_handler(request):
         #                                   'webpos/pdf_template.html',
         #                                   reqdata)
     else:
-        return HttpResponse('asyvbasvbayvasouvo')
+        return HttpResponse(status=400)
 
 
 def pdf_view(request):
