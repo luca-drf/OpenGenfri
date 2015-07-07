@@ -12,11 +12,17 @@
             </ul>
             <h2> Items:</h2>
             <ul>
-		 {% for billitem in bill %}
-                <li>{{billitem.item}} x{{billitem.quantity}}
-                    ${{billitem.item_price}} = </br>
-                    ${{billitem.total_cost}}</li>
-			{% ifchanged billitem.category %}<hr>{% endifchanged%}
+		 {% for item in billitems%}
+			{% ifchanged item.category %}
+				<div>
+					<pdf:nextpage />
+				</div>	
+			{{ item.category }}
+			{% endifchanged%}
+
+                <li>{{item.item}} x{{item.quantity}}
+                    ${{item.item_price}} = 
+                    ${{item.total_cost}}</li>
             {% endfor %}
             </ul>
             <h4>Total: {{bill.total}}</h4>

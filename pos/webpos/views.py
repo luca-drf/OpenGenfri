@@ -121,9 +121,15 @@ def bill_handler(request):
 
 def pdf_view(request):
     bill = Bill.objects.get(customer_name='fedfol')
-    items_ordered_by_category =bill.billitem_set.all().order_by('category')
-    context = {'bill':items_ordered_by_category}
-    return render_to_pdf_response(request, 'webpos/pdf_template_new.html', context)
+    items =bill.billitem_set.all()
+    categories = Category.objects.all()
+    billitems = {}
+    for cat in categories:
+        itemlist = list(items.filter(category=cat)) 
+        if itemlist:
+            billitems[cat] = itemlist
+    context = {'bill':bill, 'billitems':billitems}
+    return render_to_pdf_response(request, 'webpos/comanda.html', context)
 
 
 def report(request, *args):
