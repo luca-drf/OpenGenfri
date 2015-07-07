@@ -13,7 +13,6 @@ from django.contrib.auth.models import User
 from webpos.models import Item, Category, BillItem, Bill
 from webpos import dbmanager as dbmng
 from webpos.forms import ReportForm, SearchForm
-from easy_pdf.views import PDFTemplateView
 
 from django.template import RequestContext
 
