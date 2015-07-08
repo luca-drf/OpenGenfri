@@ -839,3 +839,13 @@ Traceback (most recent call last):
   File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
     % (callback.__module__, view_name))
 ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/search/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.search didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/search/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.search didn't return an HttpResponse object. It returned None instead.
