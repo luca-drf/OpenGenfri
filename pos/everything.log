@@ -789,3 +789,53 @@ Traceback (most recent call last):
   File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1028, in as_sql
     (field.__class__.__name__, val.__class__.__name__))
 TypeError: Database is trying to update a relational field of type CharField with a value of type User. Make sure you are setting the correct relations
+Not Found: /favicon.ico
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
+Forbidden (CSRF token missing or incorrect.): /webpos/search/
+Forbidden (CSRF token missing or incorrect.): /webpos/search/
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /webpos/undo-bill
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 151, in get_response
+    % (callback.__module__, view_name))
+ValueError: The view webpos.views.undo_bill didn't return an HttpResponse object. It returned None instead.
