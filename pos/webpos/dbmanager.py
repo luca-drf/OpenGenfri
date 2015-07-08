@@ -49,9 +49,11 @@ def commit_bill(output, reqdata, user):
 
 def undo_bill(billid, user):
     bill = Bill.objects.get(pk=billid)
+    if not bill.is_committed():
+        return 'Bill has already been deleted!'
     for billitem in bill.billitem_set.all():
         billitem.item.quantity += billitem.quantity
         billitem.item.save()
     bill.deleted_by = user.username
     bill.save()
-    return billid
+    return 'Bill #' + billid + ' deleted!'

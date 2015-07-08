@@ -224,7 +224,7 @@ def search(request, *args):
 
         else:
             return render_to_response('webpos/search.html',
-                                      {'form': 'No!',
+                                      {'form': form,
                                        'qs_empty': qs_empty},
                                       context_instance=RequestContext(request))
     else:
