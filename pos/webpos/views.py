@@ -94,7 +94,8 @@ def bill_handler(request):
          { "errors": {},
            "customer_id": customer_id,
            "date": date,
-           "total": total
+           "total": total,
+           "pdf_url": url
          }
     
     Where "errors" points to a dictionary having the names of the items that
@@ -107,30 +108,21 @@ def bill_handler(request):
                   'bill_id': None,
                   'customer_id': 'LOL',
                   'date': None,
-                  'total': 0
+                  'total': 0,
+                  'pdf_url': ''
                  }
         reqdata = json.loads(request.body)
         repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
-        if repdata['errors']:
-            return JsonResponse(repdata)
-        else:
-            items = bill.billitem_set.all()
-            billitems = {}
-            for cat in Category.objects.all():
-                itemlist = list(items.filter(category=cat)) 
-                if itemlist:
-                    billitems[cat] = itemlist
-            context = {'bill': bill, 'billitems': billitems}
-            return render_to_pdf_response(request,
-                                          'webpos/comanda.html',
-                                          context)
+        if not repdata['errors']:
+            repdata['pdf_url'] = reverse('webpos:pdf-bill', args=[bill.id])
+        return JsonResponse(repdata)
     else:
         return HttpResponse(status=400)
 
 
-def pdf_view(request):
-    bill = Bill.objects.get(customer_name='fedfol')
-    items =bill.billitem_set.all()
+def pdf_view(request, bill_id):
+    bill = Bill.objects.get(pk=bill_id)
+    items = bill.billitem_set.all()
     categories = Category.objects.all()
     billitems = {}
     for cat in categories:
