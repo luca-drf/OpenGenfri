@@ -32,7 +32,7 @@ main {
   user-select: none;
 }
 main header {
-  height: 90px;
+  height: 10px;
   text-align: center;
   background: url("http://www.paeseinfesta.it/templates/sonne/css/images/Header.png") center top;
 }
@@ -133,7 +133,7 @@ main footer {
   clear: both;
   text-align: center;
   vertical-align: bottom;
-  height: 85px;
+  height: 10px;
 }
 
 #logo {
