@@ -326,10 +326,16 @@ function orderPresenter (hModel) {
          * @param {String} hResponse.customer_id The customer ID.
          * @param {String} hResponse.date        The bill timestamp.
          * @param {Number} hResponse.total       The validated-by-server bill total.
+         * @param {String} hResponse.pdf_url     The PDF url to print it.
          */
         var fnAjaxSuccess = function (hResponse) {
                 if (validateBillResponse(hResponse)) {
-                    // @todo Print the PDF bill with hResponse.customer_id and hResponse.bill_id
+                    var hPrintWindow = window.open(hResponse.pdf_url),
+                        isFirefox = typeof InstallTrigger !== 'undefined';   // Firefox 1.0+
+                    if (!isFirefox) {// Firefox PDF.js is buggy. Better to not trigger automatic print
+                        hPrintWindow.print();
+                    }
+                    window.location.reload();
                 }
             };
 

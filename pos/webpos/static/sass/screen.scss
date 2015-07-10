@@ -60,7 +60,7 @@ main {
     @include box-shadow(0 2px 3px $black);
     @include user-select(none);
     header {
-        height: 90px;
+        height: 10px;//90px;
         text-align: center;
         background: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png') center top;
     }
@@ -152,7 +152,7 @@ main {
         clear: both;
         text-align: center;
         vertical-align: bottom;
-        height: 85px;
+        height: 10px;//85px;
     }
 }
 #logo {

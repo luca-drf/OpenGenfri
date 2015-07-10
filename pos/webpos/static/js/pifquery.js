@@ -173,11 +173,11 @@ function PiFQuery (hConfig) {
      * @param {HTMLElement} elNode
      */
     that.show = function (elElement) {
-        if (getComputedStyle(elElement).display === 'none') {
-            elElement.style.display = 'block';
-        } else {
+        //if (getComputedStyle(elElement).display === 'none') {
+        //    elElement.style.display = 'block';
+        //} else {
             elElement.style.display = '';
-        }
+        //}
         elElement.style.visibility = 'visible';
         elElement.classList.remove('hidden');
     }

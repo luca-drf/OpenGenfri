@@ -20,12 +20,12 @@ def commit_bill(output, reqdata, user):
                 if output['errors']:
                     continue
                 output['total'] += dbitm.price * quant
-                billitms.append(BillItem(item=dbitm, quantity=quant,category=dbitm.category,
+                billitms.append(BillItem(item=dbitm, quantity=quant, category=dbitm.category,
                                          item_price=dbitm.price))
                 dbitm.quantity = newquant
         else:
             output['total'] += dbitm.price * quant
-            billitms.append(BillItem(item=dbitm, quantity=quant,
+            billitms.append(BillItem(item=dbitm, quantity=quant, category=dbitm.category,
                                      item_price=dbitm.price))
 
     if output['errors']:
