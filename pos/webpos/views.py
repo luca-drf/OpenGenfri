@@ -125,11 +125,14 @@ def pdf_view(request, bill_id):
     items = bill.billitem_set.all()
     categories = Category.objects.all()
     billitems = {}
+    headeritems = {}
     for cat in categories:
         itemlist = list(items.filter(category=cat)) 
         if itemlist:
-            billitems[cat] = itemlist
-    context = {'bill':bill, 'billitems':billitems}
+            if cat.printable:
+                billitems[cat] = itemlist
+            headeritems[cat] = itemlist
+    context = {'bill':bill, 'billitems':billitems, 'headeritems':headeritems}
     return render_to_pdf_response(request, 'webpos/comanda.html', context)
 
 

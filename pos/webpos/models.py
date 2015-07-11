@@ -22,6 +22,7 @@ class Category(models.Model):
    # location = models.ForeignKey('Location')
     priority = models.PositiveSmallIntegerField(default=3)
     enabled = models.BooleanField(default=True)
+    printable = models.BooleanField(default=True)
     
     class Meta:
         verbose_name_plural = 'Categories'

@@ -15,9 +15,9 @@ class ItemAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name', 'priority', 'enabled']}),
+        (None, {'fields': ['name', 'priority', 'enabled','printable']}),
     ]
-    list_display = ('name', 'priority', 'enabled')
+    list_display = ('name', 'priority', 'enabled','enabled')
     search_fields = ['name']
     list_filter = ['enabled']
 
