@@ -878,3 +878,14 @@ Traceback (most recent call last):
   File "/Users/thedos/stuff/openg/OpenGenfri/pos/webpos/views.py", line 115, in bill_handler
     repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
 ValueError: too many values to unpack
+Internal Server Error: /webpos/commit/
+Traceback (most recent call last):
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/OpenGenfri/pos/webpos/views.py", line 115, in bill_handler
+    repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
+ValueError: too many values to unpack

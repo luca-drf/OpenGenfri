@@ -106,7 +106,7 @@ def bill_handler(request):
     if request.method == 'POST':# and request.is_ajax():
         output = {'errors': [],
                   'bill_id': None,
-                  'customer_id': 'LOL',
+                  'customer_id': '',
                   'date': None,
                   'total': 0,
                   'pdf_url': ''
