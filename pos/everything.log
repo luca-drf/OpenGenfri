@@ -924,3 +924,61 @@ Traceback (most recent call last):
   File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/db/backends/sqlite3/base.py", line 318, in execute
     return Database.Cursor.execute(self, query, params)
 OperationalError: no such column: webpos_category.printable
+Internal Server Error: /admin/webpos/item/add/
+Traceback (most recent call last):
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/sites.py", line 233, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 1516, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 34, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 30, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 1470, in changeform_view
+    self.log_addition(request, new_object)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 810, in log_addition
+    object_repr=force_text(object),
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/encoding.py", line 94, in force_text
+    s = six.text_type(bytes(s), encoding, errors)
+UnicodeEncodeError: 'ascii' codec can't encode character u'\xf9' in position 3: ordinal not in range(128)
+Internal Server Error: /admin/webpos/item/add/
+Traceback (most recent call last):
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/sites.py", line 233, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 1516, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 34, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 30, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 1470, in changeform_view
+    self.log_addition(request, new_object)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/admin/options.py", line 810, in log_addition
+    object_repr=force_text(object),
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/encoding.py", line 94, in force_text
+    s = six.text_type(bytes(s), encoding, errors)
+UnicodeEncodeError: 'ascii' codec can't encode character u'\xe8' in position 3: ordinal not in range(128)
