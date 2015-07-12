@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <link href="{% static "css/marx.min.css" %}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{% static "css/backend.css" %}" media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content %}
+    <main>
+        <nav>
+            <ul>
+                <li><a href="{% url 'webpos:index' %}">Home</a></li>
+                <li><a href="{% url 'webpos:order' %}" class="order-button">Order</a></li>
+                <li><a href="{% url 'webpos:search' %}">Find Bill</a></li>
+                <li><a href="{% url 'webpos:report' %}">Report</a></li>
+                <li><a href="{% url 'chpwd' %}">Change Password</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+        {% block backend-content %}
+        {% endblock %}
+    </main>
+{% endblock %}

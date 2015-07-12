@@ -1,58 +1,57 @@
-{% extends "base.html" %}
+{% extends "backend.html" %}
 {% load staticfiles %}
 {% block title %}OpenGenfri > search{% endblock %}
-{% block head %}
-{% endblock %}
-{% block content %}
-<p>Search Customer's name, bill number or server.</p>
-<p>Note: To search for bill number, enter '#' before the number (e.g. #19)</p>
-<form action="" method="get">
-{{ form }}
-<input type="submit" value="Search" />
-<br/>
-<br/>
-<a href="{% url 'index'%}">Home</a>
-<br/>
-<br/>
-{% if queryset %}
-<table style="width:60%">
-    <tr>
-        <th>Bill #</th>
-        <th>Customer Name</th>
-        <th>Date</th>
-        <th>Server</th>
-        <th>Total</th>
-    </tr>
-    {% for bill in queryset %}
-    <tr id="bill-{{bill.id}}">
-        <td><a href="{% url 'webpos:bill-detail' bill.id %}">{{bill.id}}</a></td>
-        <td>{{bill.customer_name}}</td>
-        <td>{{bill.date}}</td>
-        <td>{{bill.server}}</td>
-        <td>${{bill.total}}</td>
-        <td>
-            <form method="post" id="form-{{bill.id}}">
-                {% csrf_token %}
-                <input type="button" class="undo-bill" id="{{bill.id}}" value="Undo Bill" />
-            </form>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-<script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
-<script type="text/javascript" src="{% static "undobill-jquery.js" %}"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    var args = {
-        csrf_token: "{{ csrf_token }}",
-        url: "{% url 'webpos:undo-bill' %}",
-        hide: 'tr'
-    };
-    $('.undo-bill').click(args, undo_bill);
-});
-</script>
-{% elif qs_empty %}
-<p>No bills found.</p>
-{% endif %}
+{% block backend-content %}
+<section>
+    <h3>Search Customer's name, bill number or server.</h3>
+    <p>Note: To search for bill number, enter '#' before the number (e.g. #19)</p>
+    <form action="" method="get">
+    {{ form }}
+    <input type="submit" value="Search" />
+    {% if queryset %}
+    <table>
+        <thead>
+            <tr>
+                <th>Bill #</th>
+                <th>Customer Name</th>
+                <th>Date</th>
+                <th>Server</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bill in queryset %}
+            <tr id="bill-{{bill.id}}">
+                <td><a href="{% url 'webpos:bill-detail' bill.id %}">{{bill.id}}</a></td>
+                <td>{{bill.customer_name}}</td>
+                <td>{{bill.date}}</td>
+                <td>{{bill.server}}</td>
+                <td class="nowrap">€ {{bill.total}}</td>
+                <td>
+                    <form method="post" id="form-{{bill.id}}">
+                        {% csrf_token %}
+                        <input type="submit" class="undo-bill" id="{{bill.id}}" value="Undo Bill" />
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript" src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "undobill-jquery.js" %}"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var args = {
+            csrf_token: "{{ csrf_token }}",
+            url: "{% url 'webpos:undo-bill' %}",
+            hide: 'tr'
+        };
+        $('.undo-bill').click(args, undo_bill);
+    });
+    </script>
+    {% elif qs_empty %}
+    <p>No bills found.</p>
+    {% endif %}
+</section>
 {% endblock %}
 

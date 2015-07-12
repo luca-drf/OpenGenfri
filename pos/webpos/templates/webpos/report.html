@@ -1,36 +1,41 @@
-{% extends "base.html" %}
+{% extends "backend.html" %}
 {% block title %}OpenGenfri > report{% endblock %}
-{% block content %}
-<form action="" method="get">
-{{ form }}
-<input type="submit" value="Search" />
-<br/>
-<br/>
-<a href="{% url 'index'%}">Home</a>
-<br/>
-<br/>
+{% block backend-content %}
+<section>
+    <h3>Report</h3>
+    <form action="" method="get">
+    {{ form }}
+    <input type="submit" value="Search" />
+</section>
 {% if queryset %}
-<table style="width:60%">
-    <tr>
-        <th>Bill #</th>
-        <th>Date</th>
-        <th>Cat.</th>
-        <th>Item</th>
-        <th>Units</th>
-        <th>Unit price</th>
-    </tr>
-    {% for billitem in queryset %}
-    <tr>
-        <td><a href="{% url 'webpos:bill-detail' billitem.bill.id %}">{{billitem.bill.id}}</a></td>
-        <td>{{billitem.bill.date}}</td>
-        <td>{{billitem.item.category.name}}</td>
-        <td>{{billitem.item}}</td>
-        <td>{{billitem.quantity}}</td> 
-        <td>${{billitem.item_price}}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% elif qs_empty %}
-<p>No bills found.</p>
+<section>
+    <h3>Results</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Bill #</th>
+                <th>Date</th>
+                <th>Cat.</th>
+                <th>Item</th>
+                <th>Units</th>
+                <th>Unit price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for billitem in queryset %}
+            <tr>
+                <td><a href="{% url 'webpos:bill-detail' billitem.bill.id %}">{{billitem.bill.id}}</a></td>
+                <td>{{billitem.bill.date}}</td>
+                <td>{{billitem.item.category.name}}</td>
+                <td>{{billitem.item}}</td>
+                <td>{{billitem.quantity}}</td>
+                <td class="nowrap">€ {{billitem.item_price}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% elif qs_empty %}
+    <p>No bills found.</p>
+</section>
 {% endif %}
 {% endblock %}
