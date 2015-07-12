@@ -1,0 +1,23 @@
+button.order-button {
+  color: #2196F3;
+}
+button.order-button:hover {
+  background-color: #2196F3;
+}
+button.order-button:active {
+  background-color: #6ab8f7;
+}
+
+nav ul li a.order-button {
+  color: #2196F3;
+}
+nav ul li a.order-button:hover {
+  border-color: rgba(33, 150, 243, 0.4);
+}
+nav ul li a.order-button:active {
+  border-color: rgba(33, 150, 243, 0.76);
+}
+
+.nowrap {
+  white-space: nowrap;
+}

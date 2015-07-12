@@ -1,12 +1,18 @@
-{% extends "base.html"%} 
+{% extends "backend.html"%}
 
 {% block title %}OpenGenfri > logout{% endblock %}
 
-{% block head %}<meta http-equiv="refresh" content="2; url={% url 'webpos:index' %}">{% endblock %}
+{% block head %}
+    {{ block.super }}
+    <meta http-equiv="refresh" content="2; url={% url 'webpos:index' %}">
+{% endblock %}
 
 
 {% block content %}
-
-<p>You've been logged out.</p>
-
+<main>
+    <section>
+        <h3>Logout</h3>
+        <p>You've been logged out.</p>
+    </section>
+</main>
 {% endblock %}

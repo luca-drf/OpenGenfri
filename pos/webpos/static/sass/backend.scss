@@ -1,0 +1,25 @@
+$order-button-color: #2196F3;
+button.order-button {
+    color: $order-button-color;
+    &:hover {
+        background-color: $order-button-color;
+    }
+    &:active {
+        background-color: lighten($order-button-color, 15);
+    }
+}
+
+nav ul li a.order-button {
+    color: $order-button-color;
+
+    &:hover {
+        border-color: rgba($order-button-color, 0.4);
+    }
+
+    &:active {
+        border-color: rgba($order-button-color, 0.76);
+    }
+}
+.nowrap {
+    white-space: nowrap;
+}

@@ -1,27 +1,30 @@
-{% extends "base.html" %}
+{% extends "backend.html" %}
 
 {% block title %}OpenGenfri > change password{% endblock %}
 
 
-{% block content %}
-<form method="post" action="{% url 'django.contrib.auth.views.password_change' %}">{% csrf_token %}
-<table>
-<tr>
-    <th><div class="label_form">{{ form.old_password.label_tag }}</div></th>
-    <td><div class="roundform">{{ form.old_password }}</div></td>
-</tr>
-<tr><th></th><td>{{ form.old_password.errors }}</td></tr>
-<tr>
-    <th><div class="label_form">{{ form.new_password1.label_tag }}</div></th>
-    <td><div class="roundform">{{ form.new_password1 }}</div></td>
-</tr>
-<tr><th></th><td>{{ form.new_password1.errors }}</td></tr>
-<tr>
-    <th><div class="label_form">{{ form.new_password2.label_tag }}</div></th>
-    <td><div class="roundform">{{ form.new_password2 }}</div></td>
-</tr>
-<tr><th></th><td>{{ form.new_password2.errors }}</td></tr>
-</table>
-<input class="button" type="submit" value="Save" />
-</form>
+{% block backend-content %}
+<section>
+    <h3>Change your password</h3>
+    <form method="post" action="{% url 'django.contrib.auth.views.password_change' %}">{% csrf_token %}
+        <table>
+            <tr>
+                <th><div class="label_form">{{ form.old_password.label_tag }}</div></th>
+                <td><div class="roundform">{{ form.old_password }}</div></td>
+            </tr>
+            <tr><th></th><td>{{ form.old_password.errors }}</td></tr>
+            <tr>
+                <th><div class="label_form">{{ form.new_password1.label_tag }}</div></th>
+                <td><div class="roundform">{{ form.new_password1 }}</div></td>
+            </tr>
+            <tr><th></th><td>{{ form.new_password1.errors }}</td></tr>
+            <tr>
+                <th><div class="label_form">{{ form.new_password2.label_tag }}</div></th>
+                <td><div class="roundform">{{ form.new_password2 }}</div></td>
+            </tr>
+            <tr><th></th><td>{{ form.new_password2.errors }}</td></tr>
+        </table>
+        <input class="button" type="submit" value="Save" />
+    </form>
+</section>
 {% endblock %}
