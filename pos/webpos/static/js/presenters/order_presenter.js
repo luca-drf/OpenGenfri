@@ -255,9 +255,6 @@ function orderPresenter (hModel) {
             aResults.push(hItems[nId]);
         }
         aResults.sort(function (hItem1, hItem2) {
-            if (!aCat[hItem1.category] || !aCat[hItem2.category]) {
-                return 1;
-            }
             var nPriority1 = aCat[hItem1.category].priority,
                 nPriority2 = aCat[hItem2.category].priority,
                 nReturn = 0;
@@ -265,6 +262,10 @@ function orderPresenter (hModel) {
             if (nPriority1 < nPriority2) {
                 nReturn = -1;
             } else if (nPriority1 > nPriority2) {
+                nReturn = 1;
+            } else if (hItem1.category < hItem2.category) {
+                nReturn = -1;
+            } else if (hItem1.category > hItem2.category) {
                 nReturn = 1;
             }
 
