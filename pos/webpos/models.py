@@ -10,7 +10,7 @@ class Location(models.Model):
     description = models.CharField(max_length=30)
     enabled = models.BooleanField(default=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.description
 
 # Category class, used as a container for different type of items, related by
@@ -27,7 +27,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 # Item class, basically the items that we'll sell (ex. Coke, Pizza, Costata,
@@ -48,7 +48,7 @@ class Item(models.Model):
     is_available.boolean = True
     is_available.short_description = 'Available?'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 # Bill class, it stores a whole order made by one client 
@@ -70,7 +70,7 @@ class Bill(models.Model):
     is_committed.boolean = True
     is_committed.short_description = 'Validated'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.customer_name + ' ' + '#' + str(self.id)
 
 
