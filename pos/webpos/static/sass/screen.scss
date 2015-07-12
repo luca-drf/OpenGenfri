@@ -35,9 +35,14 @@ $font_1: Helvetica;
 $font_2: sans-serif;
 $font_3: monospace;
 
+@mixin component-shadow () {
+    @include box-shadow(0px 1px 4px 0px rgba(0, 0, 0, 0.37));
+}
+
 body {
     font-size: 20px;
-    background: image-url('wood.jpg');
+    // background: image-url('wood.jpg');
+    background-color: #4A4647;
     color: $color_shark_approx;
     font-family: $font_0, $font_1, $font_2;
     margin: 0;
@@ -54,10 +59,12 @@ hr {
     margin: 10px 0;
 }
 main {
-    background: image-url('paper.jpg');
+    // background: image-url('paper.jpg');
+    background-color: #D5D69D;
     width: 1000px;
     margin: auto;
-    @include box-shadow(0 2px 3px $black);
+    // @include box-shadow(0 2px 3px $black);
+    @include component-shadow;
     @include user-select(none);
     header {
         height: 10px;//90px;
@@ -77,11 +84,13 @@ main {
     aside {
         float: left;
         width: 360px;
-        background-image: image-url('paper.gif');
+        // background-image: image-url('paper.gif');
+        background-color: #EFEFEF;
         font-family: $font_3;
         margin-left: 20px;
         padding: 10px;
-        @include box-shadow(0 2px 3px $black);
+        // @include box-shadow(0 2px 3px $black);
+        @include component-shadow;
         position: relative;
         .btn-print-bill {
             font-size: 50px;
@@ -166,13 +175,17 @@ main {
     padding: 0;
     margin: 0;
     li {
-        @include box-shadow(0 2px 3px $pap_grey);
+        // @include box-shadow(0 2px 3px $pap_grey);
+        @include component-shadow;
+        @include border-radius(2px);
         margin: 5px 2px;
         text-align: center;
         display: inline-block;// non-flexbox browsers
         @include display-flex(inline-flex);
-        @include align-items(center);
+        // @include align-items(center);
+        // @include align-content(center);
         @include justify-content(center);
+        height: 70px;
 
         &.badge {
             position: relative;
@@ -190,13 +203,14 @@ main {
                 text-align: center;
                 line-height: 18px;
                 border-radius: 50%;
-                @include box-shadow(0 0 1px $pap_grey);
+                //@include box-shadow(0 0 1px $pap_grey);
+                @include component-shadow;
             }
         }
 
         a {
             display: block;
-            height: 50px;
+            // height: 50px;
             width: 126px;
             word-wrap: break-word;
             overflow: auto;
