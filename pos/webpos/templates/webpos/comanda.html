@@ -33,14 +33,13 @@
 	    <div> <pdf:nextpage /></div>
 		 {% for k,v in billitems.items %}
 	    <table>
-		    <tr><td><h1>{{ k }}</td><td>Scontrino #{{ bill.id}}</h1></td></tr>
-		    <tr><td>Ora e Data:</td><td>{{ bill.date }}</td></tr>
+		    <tr><td><h1>{{ k }}</td></h1><td>#{{bill.id}} - {{bill.date}}</td></tr>
 	    </table>
 	    <hr />
 	    <table>
 		 <tr>
-			 <td><h3>Nome cliente</h3></td>
-			 <td><h3>Tavolo</h3></td>
+			 <td><h2>Nome cliente</h2></td>
+			 <td><h2>Tavolo</h2></td>
 		 </tr>
 		 <tr>
 			 <td><h4>{{ bill.customer_name }}</h4></td>
@@ -52,15 +51,11 @@
 		    <tr>
 			    <td>QTY.</td>
 			    <td>PRODOTTO</td>
-			    <td>PREZZO U.</td>
-			    <td>PREZZO TOT.</td>
 			</tr>
 		 {% for item in v %}
 		<tr>
 			<td>{{item.quantity}}</td>
 			<td>{{item.item}}</td>
-			<td>{{item.item_price}}</td> 
-			<td>{{item.total_cost}}</td>
 		</tr>
 		{% endfor %}
 	    </table>
