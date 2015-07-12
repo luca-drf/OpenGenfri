@@ -982,3 +982,18 @@ Traceback (most recent call last):
   File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/encoding.py", line 94, in force_text
     s = six.text_type(bytes(s), encoding, errors)
 UnicodeEncodeError: 'ascii' codec can't encode character u'\xe8' in position 3: ordinal not in range(128)
+Internal Server Error: /webpos/undo-bill/
+Traceback (most recent call last):
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/thedos/stuff/openg/OpenGenfri/pos/webpos/views.py", line 145, in undo_bill
+    message = dbmng.undo_bill(billid, user)
+  File "/Users/thedos/stuff/openg/OpenGenfri/pos/webpos/dbmanager.py", line 55, in undo_bill
+    billitem.item.quantity += billitem.quantity
+TypeError: unsupported operand type(s) for +=: 'NoneType' and 'int'
