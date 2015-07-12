@@ -52,8 +52,9 @@ def undo_bill(billid, user):
     if not bill.is_committed():
         return 'Bill has already been deleted!'
     for billitem in bill.billitem_set.all():
-        billitem.item.quantity += billitem.quantity
-        billitem.item.save()
+        if billitem.item.quantity is not None:
+            billitem.item.quantity += billitem.quantity
+            billitem.item.save()
     bill.deleted_by = user.username
     bill.save()
     return 'Bill #' + billid + ' deleted!'
