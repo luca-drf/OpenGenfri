@@ -3,9 +3,9 @@ from webpos.models import Category
 
 
 class ReportForm(forms.Form):
-    sel_category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                          empty_label='All',
-                                          required=False)
+    # sel_category = forms.ModelChoiceField(queryset=Category.objects.all(),
+    #                                       empty_label='All',
+    #                                       required=False)
     date_start = forms.SplitDateTimeField(required=False)
     date_end = forms.SplitDateTimeField(required=False)
 
