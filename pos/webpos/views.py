@@ -1,5 +1,6 @@
 import json
 import re
+from decimal import Decimal
 from easy_pdf.rendering import render_to_pdf_response
 from django.shortcuts import render_to_response#, get_object_or_404
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
@@ -150,37 +151,58 @@ def undo_bill(request):
 def report(request, *args):
     """View that renders a report page to fetch all items sold under three
     constraints which are: Category, Begin Date/Time and End Date/Time."""
-    qs_empty = False    
     if request.GET:
         form = ReportForm(request.GET)
-        if form.is_valid():
-            sel_category = form.cleaned_data['sel_category']
+        if form.is_valid():               
             date_start = form.cleaned_data['date_start']
             date_end = form.cleaned_data['date_end']
             qs = BillItem.objects.all().filter(bill__deleted_by='')
-            qs = qs.order_by('item__category', 'bill__date')
-            if sel_category:
-                qs = qs.filter(item__category=sel_category)
             if date_start:
                 qs = qs.filter(bill__date__gte=date_start)
             if date_end:
                 qs = qs.filter(bill__date__lte=date_end)            
             
             if not qs.exists():
-                qs_empty = True
+                return render_to_response('webpos/report.html', 
+                                      {'form': form,
+                                       #'report': None,
+                                       'qs_empty': True})
+            report_dict = {}
+            total_earn = 0
+            for category in Category.objects.all():
+                report_dict[category] = {'itemss': {}, 'items_sold': 0, 'total_price': Decimal(0.00)}
+                for item in category.item_set.all():
+                    report_dict[category]['itemss'][item] = {'quantity': 0,
+                                                             'price': Decimal(0.00)}
+            for billitem in qs:
+                quantity = billitem.quantity
+                price = billitem.total_cost
+                entry_category = report_dict[billitem.category]
+                entry_category['items_sold'] += quantity
+                entry_category['total_price'] += abs(price)
+                entry_item = entry_category['itemss'][billitem.item]
+                entry_item['quantity'] += quantity
+                entry_item['price'] += abs(price)
+                total_earn += abs(price)
+
+ 
             return render_to_response('webpos/report.html', 
                                       {'form': form,
-                                       'queryset': qs,
-                                       'qs_empty': qs_empty})
+                                       'report': report_dict,
+                                       'total_earn': total_earn,
+                                       #'qs_empty': False
+                                       })
         else:
             return render_to_response('webpos/report.html', 
                                       {'form': 'Form Error!',
-                                       'qs_empty': qs_empty})
+                                       #'qs_empty': qs_empty
+                                       })
     else:
         form = ReportForm()
         return render_to_response('webpos/report.html', 
                                   {'form': form,
-                                   'qs_empty': qs_empty})
+                                   #'qs_empty': qs_empty
+                                   })
 
 
 class BillDetailView(generic.DetailView):

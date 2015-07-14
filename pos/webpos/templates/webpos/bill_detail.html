@@ -9,12 +9,14 @@
     <li>Server: {{bill.server}}</li>
     <li>Total: € {{bill.total}}</li>
 </ul>
+{% if bill.deleted_by == "" %}
 <div id="undo-button">
 <form method="post" name="">
     {% csrf_token %}
     <input type="submit" class="undo-bill" id="{{bill.id}}" value="Undo Bill" />
 </form>
 </div>
+{% endif %}
 <br/>
 <br/>
 <table>
