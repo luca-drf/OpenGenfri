@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'at=5ht_msawx#8jns_#fu!)x6c7n*0x5+2&(&mmq^o)!#-#h^n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
 TEMPLATE_DEBUG = True
 
@@ -117,3 +117,4 @@ LOGGING = {
         },
     },
 }
+STATIC_ROOT = BASE_DIR + '/static/'

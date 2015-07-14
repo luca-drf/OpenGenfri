@@ -1026,3 +1026,104 @@ Traceback (most recent call last):
   File "/Users/thedos/stuff/openg/lib/python2.7/site-packages/django/utils/encoding.py", line 94, in force_text
     s = six.text_type(bytes(s), encoding, errors)
 UnicodeEncodeError: 'ascii' codec can't encode character u'\xe0' in position 6: ordinal not in range(128)
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /webpos/pdf/22
+Traceback (most recent call last):
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/webapps/openg_env/OpenGenfri/pos/webpos/views.py", line 136, in pdf_view
+    return render_to_pdf_response(request, 'webpos/comanda.html', context)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/easy_pdf/rendering.py", line 166, in render_to_pdf_response
+    pdf = render_to_pdf(template, context, encoding=encoding, **kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/easy_pdf/rendering.py", line 139, in render_to_pdf
+    return html_to_pdf(content, encoding, **kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/easy_pdf/rendering.py", line 65, in html_to_pdf
+    link_callback=link_callback, **kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/document.py", line 89, in pisaDocument
+    encoding, context=context, xml_output=xml_output)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/document.py", line 57, in pisaStory
+    pisaParser(src, context, default_css, xhtml, encoding, xml_output)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 691, in pisaParser
+    pisaLoop(document, context)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 630, in pisaLoop
+    pisaLoop(node, context, path, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 577, in pisaLoop
+    pisaLoop(nnode, context, path, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 577, in pisaLoop
+    pisaLoop(nnode, context, path, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 577, in pisaLoop
+    pisaLoop(nnode, context, path, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 577, in pisaLoop
+    pisaLoop(nnode, context, path, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 577, in pisaLoop
+    pisaLoop(nnode, context, path, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 464, in pisaLoop
+    attr = pisaGetAttributes(context, node.tagName, node.attributes)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/parser.py", line 117, in pisaGetAttributes
+    nv = c.getFile(nv)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/context.py", line 822, in getFile
+    return getFile(self._getFileDeprecated(name, relative))
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/util.py", line 635, in getFile
+    file = pisaFileObject(*a, **kw)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/xhtml2pdf/util.py", line 516, in __init__
+    uri = uri.encode('utf-8')
+AttributeError: 'NoneType' object has no attribute 'encode'
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /webpos/commit/
+Traceback (most recent call last):
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/webapps/openg_env/OpenGenfri/pos/webpos/views.py", line 115, in bill_handler
+    repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
+ValueError: too many values to unpack
+Internal Server Error: /webpos/commit/
+Traceback (most recent call last):
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/webapps/openg_env/OpenGenfri/pos/webpos/views.py", line 115, in bill_handler
+    repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
+ValueError: too many values to unpack
+Internal Server Error: /webpos/commit/
+Traceback (most recent call last):
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/webapps/openg_env/local/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/webapps/openg_env/OpenGenfri/pos/webpos/views.py", line 115, in bill_handler
+    repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
+ValueError: too many values to unpack
