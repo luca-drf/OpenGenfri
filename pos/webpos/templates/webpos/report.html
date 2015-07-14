@@ -7,35 +7,40 @@
     {{ form }}
     <input type="submit" value="Search" />
 </section>
-{% if queryset %}
+{% if qs_empty %}
+<p>No bills found.</p>
+{% elif report %}
 <section>
     <h3>Results</h3>
+    {% for cat, itms in report.items %}
+    <h3>{{ cat.name }} </h3>
     <table>
         <thead>
             <tr>
-                <th>Bill #</th>
-                <th>Date</th>
-                <th>Cat.</th>
                 <th>Item</th>
                 <th>Units</th>
-                <th>Unit price</th>
+                <th>Total price</th>
             </tr>
         </thead>
         <tbody>
-            {% for billitem in queryset %}
+            {% for item in itms.items.0.1.items %}
             <tr>
-                <td><a href="{% url 'webpos:bill-detail' billitem.bill.id %}">{{billitem.bill.id}}</a></td>
-                <td>{{billitem.bill.date}}</td>
-                <td>{{billitem.item.category.name}}</td>
-                <td>{{billitem.item}}</td>
-                <td>{{billitem.quantity}}</td>
-                <td class="nowrap">€ {{billitem.item_price}}</td>
+                <td>{{ item.0 }}</td>
+                <td>{{ item.1.items.1.1 }}</td>
+                <td class="nowrap">€ {{ item.1.items.0.1 }}</td>
             </tr>
             {% endfor %}
+        <thead>
+            <tr>
+                <th>Total:</th>
+                <th>{{ itms.items.1.1 }}</th>
+                <th class="nowrap">€ {{ itms.items.2.1 }}</th>
+            </tr>
+        </thead>
         </tbody>
     </table>
-    {% elif qs_empty %}
-    <p>No bills found.</p>
+    {% endfor %}
+    <h3>TOTAL EARN: € {{ total_earn }}</h3>
 </section>
 {% endif %}
 {% endblock %}
