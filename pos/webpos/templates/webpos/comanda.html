@@ -1,8 +1,24 @@
 {% extends "webpos/easy_pdf/base.html" %}
-
+{% block extra_style %}
+	<style type="text/css">
+		td.qty {
+			width: 10%;
+		}
+		td.description {
+			width: 50%;
+		}
+		td.price {
+			width: 20%;
+		}
+		logo {
+			width: 50%;
+		}
+	</style>
+{% endblock %}
 {% block content %}
     <div id="content">
         <div class="main">
+		<h1>Paese in Festa 2015</h1>
 		<h1>COPIA CLIENTE - Scontrino # {{ bill.id }}</h1>
 		    <h2>Nome Cliente: {{bill.customer_name}}</h2>
 		<ul>
@@ -13,19 +29,19 @@
             <h2>Riepilogo ordine:</h2>
 	    <table>
 		 {% for k,v in headeritems.items %}
-		 <tr><td>{{ k }}</td></tr>
+		 <tr><td colspan="4">{{ k }}</td></tr>
 		    <tr>
-			    <td>QTY.</td>
-			    <td>PRODOTTO</td>
-			    <td>PREZZO U.</td>
-			    <td>PREZZO TOT.</td>
+			    <td class="qty">QTY.</td>
+			    <td class="description">PRODOTTO</td>
+			    <td class="price">PREZZO</td>
+			    <td class="price">TOTALE</td>
 			</tr>
 		 {% for item in v %}
 		<tr>
-			<td>{{item.quantity}}</td>
-			<td>{{item.item}}</td>
-			<td>{{item.item_price}}</td> 
-			<td>{{item.total_cost}}</td>
+			<td class="qty">{{item.quantity}}</td>
+			<td class="description">{{item.item}}</td>
+			<td class="price">{{item.item_price}}</td> 
+			<td class="price">{{item.total_cost}}</td>
 		</tr>
 		{% endfor %}
             {% endfor %}
@@ -49,12 +65,12 @@
 	    <hr />
 	    <table>
 		    <tr>
-			    <td>QTY.</td>
+			    <td class="qty">QTY.</td>
 			    <td>PRODOTTO</td>
 			</tr>
 		 {% for item in v %}
 		<tr>
-			<td>{{item.quantity}}</td>
+			<td class="qty">{{item.quantity}}</td>
 			<td>{{item.item}}</td>
 		</tr>
 		{% endfor %}
