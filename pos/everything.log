@@ -1207,3 +1207,4 @@ Traceback (most recent call last):
   File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 175, in report
     'price': Decimal(0.00)}
 KeyError: <Category: CUCINA>
+Not Found: /webpos/bill/19/
