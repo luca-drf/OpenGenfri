@@ -67,11 +67,13 @@
 		    <tr>
 			    <td class="qty">QTY.</td>
 			    <td>PRODOTTO</td>
+                <td>NOTE</td>
 			</tr>
 		 {% for item in v %}
 		<tr>
 			<td class="qty">{{item.quantity}}</td>
 			<td>{{item.item}}</td>
+            <td>{{item.note}}</td>
 		</tr>
 		{% endfor %}
 	    </table>

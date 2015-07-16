@@ -84,6 +84,7 @@ class BillItem(models.Model):
     category = models.ForeignKey('Category', null=True)
     quantity = models.PositiveSmallIntegerField()
     item_price = models.DecimalField(max_digits=12, decimal_places=2)
+    note = models.CharField(max_length=200, blank=True)
 
     @property
     def total_cost(self):

@@ -10,7 +10,9 @@ def commit_bill(output, reqdata, user):
     dbitms = Item.objects.filter(name__in=reqquants.keys())
 
     for dbitm in dbitms:
-        quant = reqquants[dbitm.name]
+        reqitem = reqquants[dbitm.name]
+        quant = reqitem['qty']
+        notes = reqitem['notes']
         db_quant = dbitm.quantity
         if db_quant is not None:
             newquant = db_quant - quant
@@ -20,13 +22,17 @@ def commit_bill(output, reqdata, user):
                 if output['errors']:
                     continue
                 output['total'] += dbitm.price * quant
-                billitms.append(BillItem(item=dbitm, quantity=quant, category=dbitm.category,
-                                         item_price=dbitm.price))
+                billitms.append(BillItem(item=dbitm, quantity=quant, 
+                                         category=dbitm.category,
+                                         item_price=dbitm.price,
+                                         note=notes))
                 dbitm.quantity = newquant
         else:
             output['total'] += dbitm.price * quant
-            billitms.append(BillItem(item=dbitm, quantity=quant, category=dbitm.category,
-                                     item_price=dbitm.price))
+            billitms.append(BillItem(item=dbitm, quantity=quant,
+                                     category=dbitm.category,
+                                     item_price=dbitm.price,
+                                     note=notes))
 
     if output['errors']:
         output['total'] = 0

@@ -85,9 +85,16 @@ def bill_handler(request):
     object structured as:
 
          { "customer_name": customer_name,
-           "items": {"item1": quantity,
-                     "item2": quantity
-                    }
+           "items": {
+                "item1": {
+                    "qty": quantity1,
+                    "notes": "note1"
+                }
+                "item2": {
+                    "qty": quantity2,
+                    "notes": "note2"
+                }
+            }
          }
 
     Returning a json object of the form:
