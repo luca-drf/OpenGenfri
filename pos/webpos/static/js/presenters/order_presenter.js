@@ -400,7 +400,6 @@ function orderPresenter (hModel) {
     addEventsListener(elNameInput,         'keyup',       onWriteName);
     addEventsListener(elMain,              'dragstart',   disableEvent);
     addEventsListener(elAlertBtn,          'click touch', onClickBtnAlert);
-    document.getElementsByTagName('form')[0].addEventListener('submit', function(e){e.preventDefault()});
 
     hMod.setCategories(getCategories());
     nUpdateLoop = setUploadLoop();
