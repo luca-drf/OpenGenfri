@@ -30,7 +30,7 @@
             </article>
             <aside>
                 <div class="user-form">
-                    <input class="customer-name" type="text" name="username" autocomplete="off" placeholder="Nome cliente" />
+                    <input class="customer-name" type="text" name="username" autocomplete="off" placeholder="Nome cliente" maxlength="40" />
                 </div>
                 <a href="#" class="btn-print-bill icon-print disabled"></a>
                 <table cellpadding="0" cellspacing="0" class="billItems">
@@ -51,7 +51,7 @@
                     <template class="billItemNotes">
                         <td></td>
                         <td class="notes" colspan="3">
-                            <textarea class="item-notes" data-id="{ id }">{ notes }</textarea>
+                            <textarea class="item-notes" data-id="{ id }" maxlength="200">{ notes }</textarea>
                         </td>
                     </template>
                     <template class="billSeparatorRow">
