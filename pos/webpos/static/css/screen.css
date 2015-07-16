@@ -34,7 +34,6 @@ main {
 main header {
   height: 10px;
   text-align: center;
-  background: url("http://www.paeseinfesta.it/templates/sonne/css/images/Header.png") center top;
 }
 main article {
   float: left;

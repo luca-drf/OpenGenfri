@@ -365,7 +365,7 @@ function orderPresenter (hModel) {
                 }
             };
 
-        hMod.commitBill(elNameInput.value, fnAjaxSuccess, function (nStatus) {
+        hMod.commitBill(elNameInput.value, fnAjaxSuccess, function () {
             showAlert("<p>Errore di comunicazione col server</p>Ritenta o chiama un tecnico");
         });
     }
@@ -402,10 +402,8 @@ function orderPresenter (hModel) {
             elButton;
         for (sName in hItems) {
             aValues = hItems[sName];
-            // aValues[0] = quantity, aValues[1] = price
             nQty = aValues[0];
             elButton = document.querySelector("[data-name='" + sName +"']");
-            // @todo Find the button
             if (nQty !== null && nQty <= 5) {
                 elButton.classList.add('badge');
                 elButton.dataset.badge = nQty;
