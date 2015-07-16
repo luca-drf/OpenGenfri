@@ -1208,3 +1208,4 @@ Traceback (most recent call last):
     'price': Decimal(0.00)}
 KeyError: <Category: CUCINA>
 Not Found: /webpos/bill/19/
+Not Found: /favicon.ico
