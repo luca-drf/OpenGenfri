@@ -26,6 +26,7 @@
             <th>Item</th>
             <th>Units</th>
             <th>Unit price</th>
+            <th>Notes</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
             <td>{{billitem.item.name}}</td>
             <td>x{{billitem.quantity}}</td>
             <td class="nowrap">€ {{billitem.item_price}}</td>
+            <td>{{billitem.note}}</td>
         </tr>
         {% endfor %}
     </tbody>
