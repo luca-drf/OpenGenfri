@@ -21,6 +21,8 @@ function orderPresenter (hModel) {
         elNameInput         = document.getElementsByClassName('customer-name')[0],
         /** @type {HTMLAnchorElement} */
         elPrintBtn          = document.getElementsByClassName('btn-print-bill')[0],
+        /** @type {HTMLTextAreaElement} */
+        elItemNotes         = document.getElementsByClassName('item-notes')[0],
         /** @type {HTMLAnchorElement} */
         elAlertBtn          = document.getElementsByClassName('btn-ok-alert')[0],
         /** @type {HTMLTableElement} */
@@ -37,6 +39,8 @@ function orderPresenter (hModel) {
         sTplBillCategory    = document.getElementsByClassName('billCategoryRow')[0].innerHTML,
         /** @type {String} */
         sTplBillItem        = document.getElementsByClassName('billItemRow')[0].innerHTML,
+        /** @type {String} */
+        sTplBillNotes       = document.getElementsByClassName('billItemNotes')[0].innerHTML,
         /** @type {String} */
         sTplBillSeparator   = document.getElementsByClassName('billSeparatorRow')[0].innerHTML;
 
@@ -80,6 +84,15 @@ function orderPresenter (hModel) {
         }
     }
 
+    function onKeyupMenu (evt) {
+        evt.preventDefault();
+        if (evt.target.tagName === 'INPUT') {
+            enablePrintButton(evt.target.value.length > 2);
+        } else if (evt.target.tagName === 'TEXTAREA') {
+            addNotesToProduct(evt.target);
+        }
+    }
+
     function onClickBtnAlert (evt) {
         evt.preventDefault();
         if (evt.target.tagName === 'A') {
@@ -108,13 +121,6 @@ function orderPresenter (hModel) {
     function hideAlert () {
         elAlertPanel.classList.add('hidden');
         elMask.classList.add('hidden');
-    }
-
-    function onWriteName (evt) {
-        evt.preventDefault();
-        if (evt.target.tagName === 'INPUT') {
-            enablePrintButton(evt.target.value.length > 2);
-        }
     }
 
     /**
@@ -159,7 +165,8 @@ function orderPresenter (hModel) {
             category : nIdCat,
             name     : elProductBtn.innerHTML,
             qty      : 1,
-            price    : parseFloat(elProductBtn.dataset.price)
+            price    : parseFloat(elProductBtn.dataset.price),
+            notes    : ""
         });
     }
 
@@ -182,6 +189,15 @@ function orderPresenter (hModel) {
         hMod.decrementProduct({
             id  : nId,
             qty : 1
+        });
+    }
+
+    function addNotesToProduct (elTextarea) {
+        var nId = parseInt(elTextarea.dataset.id, 10);
+
+        hMod.addNotesToProduct({
+            id    : nId,
+            notes : elTextarea.value
         });
     }
 
@@ -221,6 +237,7 @@ function orderPresenter (hModel) {
                 }
             }
 
+            // Bill item
             sHTMLRow = riot.render(sTplBillItem, {
                 id     : hItem.id,
                 name   : hItem.name,
@@ -230,6 +247,14 @@ function orderPresenter (hModel) {
             elTr = document.createElement('tr');
 
             elTr.innerHTML = sHTMLRow;
+            elBillTable.appendChild(elTr);
+
+            //Notes
+            elTr = document.createElement('tr');
+            elTr.innerHTML = riot.render(sTplBillNotes, {
+                id    : hItem.id,
+                notes : hItem.notes
+            });
             elBillTable.appendChild(elTr);
 
             nLastCategory = hItem.category
@@ -340,7 +365,7 @@ function orderPresenter (hModel) {
                 }
             };
 
-        hMod.commitBill(elNameInput.value, fnAjaxSuccess, function (nStatus) {
+        hMod.commitBill(elNameInput.value, fnAjaxSuccess, function () {
             showAlert("<p>Errore di comunicazione col server</p>Ritenta o chiama un tecnico");
         });
     }
@@ -377,10 +402,8 @@ function orderPresenter (hModel) {
             elButton;
         for (sName in hItems) {
             aValues = hItems[sName];
-            // aValues[0] = quantity, aValues[1] = price
             nQty = aValues[0];
             elButton = document.querySelector("[data-name='" + sName +"']");
-            // @todo Find the button
             if (nQty !== null && nQty <= 5) {
                 elButton.classList.add('badge');
                 elButton.dataset.badge = nQty;
@@ -397,10 +420,9 @@ function orderPresenter (hModel) {
     addEventsListener(elCategoryContainer, 'click touch', onClickBtnCategory);
     addEventsListener(elProductsContainer, 'click touch', onClickBtnProduct);
     addEventsListener(elAside,             'click touch', onClickMenu);
-    addEventsListener(elNameInput,         'keyup',       onWriteName);
+    addEventsListener(elAside,             'keyup',       onKeyupMenu);
     addEventsListener(elMain,              'dragstart',   disableEvent);
     addEventsListener(elAlertBtn,          'click touch', onClickBtnAlert);
-    document.getElementsByTagName('form')[0].addEventListener('submit', function(e){e.preventDefault()});
 
     hMod.setCategories(getCategories());
     nUpdateLoop = setUploadLoop();

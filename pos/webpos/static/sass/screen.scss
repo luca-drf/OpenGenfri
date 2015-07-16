@@ -69,7 +69,7 @@ main {
     header {
         height: 10px;//90px;
         text-align: center;
-        background: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png') center top;
+        // background: url('http://www.paeseinfesta.it/templates/sonne/css/images/Header.png') center top;
     }
     section {
     }
@@ -155,6 +155,21 @@ main {
             text-transform: uppercase;
             white-space: nowrap;
             font-weight: bold;
+        }
+        .notes {
+            padding-left: 12px;
+            padding-right: 5px;
+            textarea {
+                resize: none;
+                overflow: hidden;
+                @include single-transition(height, 200ms);
+                width: 100%;
+                height: 1em;
+                &:focus {
+                    overflow: auto;
+                    height: 5em;
+                }
+            }
         }
     }
     footer {
