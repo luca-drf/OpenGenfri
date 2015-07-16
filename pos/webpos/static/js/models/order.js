@@ -4,7 +4,7 @@
  */
 function OrderModel () {
     var that = riot.observable(this),
-        /** @type {Object} The store. An object formatted as { id_item : { "category" : id_category, "id" : id_item, "name" : "item_name", "price" : item_price, "qty" : item_ordered_qty } } */
+        /** @type {Object} The store. An object formatted as { id_item : { "category" : id_category, "id" : id_item, "name" : "item_name", "price" : item_price, "qty" : item_ordered_qty, "notes" : item_notes } } */
         hStore = {},
         /** @type {Object} The categories object formatted as { id_number : { "id" : number, "name" : string, "priority" : number } */
         hCategories = {};
@@ -18,6 +18,7 @@ function OrderModel () {
      * @param {String} hProd.name     The product name.
      * @param {Number} hProd.qty      The ordered quantity.
      * @param {Number} hProd.price    The product price.
+     * @param {Number} hProd.notes    The product notes.
      */
     that.addProduct = function (hProd) {
         var hStoreProd = hStore[hProd.id];
@@ -68,6 +69,21 @@ function OrderModel () {
                 deleteProduct(hProd.id);
             }
             triggerAddToBill();
+        }
+    };
+
+    /**
+     * Decrement quantity of a product.
+     * @param {Object} hProd       The product data.
+     * @param {Number} hProd.id    The product ID.
+     * @param {String} hProd.notes The product notes.
+     */
+    that.addNotesToProduct = function (hProd) {
+        var hStoreProd = hStore[hProd.id];
+
+        // Add notes to a product already in the store
+        if (hStoreProd) {
+            hStoreProd.notes = hProd.notes;
         }
     };
 
@@ -166,7 +182,10 @@ function OrderModel () {
             };
 
         for (nId in hStore) {
-            hData.items[hStore[nId].name] = hStore[nId].qty;
+            hData.items[hStore[nId].name] = {
+                qty   : hStore[nId].qty,
+                notes : hStore[nId].notes
+            };
         }
         $.pif.ajaxCall({
             url : '/webpos/commit/',
