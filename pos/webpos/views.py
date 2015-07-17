@@ -175,7 +175,8 @@ def report(request, *args):
                                        #'report': None,
                                        'qs_empty': True})
             report_dict = {}
-            total_earn = 0
+            total_earn = Decimal(0)
+            total_cash = Decimal(0)
             for category in Category.objects.all():
                 report_dict[category] = {'itemss': {}, 'items_sold': 0, 'total_price': Decimal(0.00)}
                 for item in category.item_set.all():
@@ -190,13 +191,17 @@ def report(request, *args):
                 entry_item = entry_category['itemss'][billitem.item]
                 entry_item['quantity'] += quantity
                 entry_item['price'] += abs(price)
-                total_earn += abs(price)
+                total_cash += price
+                if price > 0:
+                    total_earn += price 
+                
 
  
             return render_to_response('webpos/report.html', 
                                       {'form': form,
                                        'report': report_dict,
                                        'total_earn': total_earn,
+                                       'total_cash': total_cash,
                                        #'qs_empty': False
                                        })
         else:
