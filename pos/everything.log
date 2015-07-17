@@ -1632,3 +1632,5 @@ Traceback (most recent call last):
   File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 123, in bill_handler
     repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
 ValueError: too many values to unpack
+Not Found: /favicon.ico
+Not Found: /favicon.ico
