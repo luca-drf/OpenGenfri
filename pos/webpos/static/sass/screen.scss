@@ -4,6 +4,7 @@
 @import "compass/css3/user-interface";
 @import "compass/css3/transition";
 @import "compass/css3/border-radius";
+@import "compass/css3/filter";
 
 //colors
 $color_shark_approx: #262626;
@@ -239,6 +240,12 @@ main {
                 border-radius: 50%;
                 //@include box-shadow(0 0 1px $pap_grey);
                 @include component-shadow;
+            }
+        }
+        &.disabled {
+            background-color: gray;
+            a {
+                @include filter(blur(1px));
             }
         }
 
