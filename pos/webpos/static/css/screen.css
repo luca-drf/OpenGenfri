@@ -32,8 +32,33 @@ main {
   user-select: none;
 }
 main header {
-  height: 10px;
-  text-align: center;
+  background-color: #2196F3;
+  position: fixed;
+  width: 1000px;
+  z-index: 50;
+  -moz-box-shadow: rgba(0, 0, 0, 0.26) 0 2px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.26) 0 2px 5px;
+  box-shadow: rgba(0, 0, 0, 0.26) 0 2px 5px;
+}
+main header nav ul {
+  margin: 0;
+}
+main header nav ul li {
+  display: inline;
+}
+main header nav ul li a {
+  display: inline-block;
+  padding: 10px;
+  -moz-box-sizing: padding-box;
+  -webkit-box-sizing: padding-box;
+  box-sizing: padding-box;
+  color: white;
+}
+main header nav ul li a:hover {
+  background-color: #63b5f6;
+}
+main section {
+  padding-top: 53px;
 }
 main article {
   float: left;
