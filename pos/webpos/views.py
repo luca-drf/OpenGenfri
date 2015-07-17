@@ -233,8 +233,8 @@ def search(request, *args):
             qs = Bill.objects.all().filter(deleted_by='')
             search_text = form.cleaned_data['search']
             if re.match(r'\w+', search_text):
-                qserver = Q(server__contains=search_text)
-                qcustomer = Q(customer_name__contains=search_text)
+                qserver = Q(server__icontains=search_text)
+                qcustomer = Q(customer_name__icontains=search_text)
 
                 qs = qs.filter(qserver | qcustomer)
             
