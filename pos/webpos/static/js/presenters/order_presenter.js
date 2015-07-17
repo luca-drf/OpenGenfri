@@ -66,7 +66,7 @@ function orderPresenter (hModel) {
 
     function onClickBtnProduct (evt) {
         evt.preventDefault();
-        if (evt.target.tagName === 'A') {
+        if (evt.target.tagName === 'A' && !evt.target.parentNode.classList.contains('disabled')) {
             orderProduct(evt.target);
         }
     }
@@ -407,6 +407,7 @@ function orderPresenter (hModel) {
             if (nQty !== null && nQty <= 5) {
                 elButton.classList.add('badge');
                 elButton.dataset.badge = nQty;
+                elButton.classList.toggle('disabled', nQty === 0);
             } else {
                 elButton.classList.remove('badge');
                 delete elButton.dataset.badge

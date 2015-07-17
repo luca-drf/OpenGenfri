@@ -18,7 +18,7 @@ function OrderModel () {
      * @param {String} hProd.name     The product name.
      * @param {Number} hProd.qty      The ordered quantity.
      * @param {Number} hProd.price    The product price.
-     * @param {Number} hProd.notes    The product notes.
+     * @param {String} hProd.notes    The product notes.
      */
     that.addProduct = function (hProd) {
         var hStoreProd = hStore[hProd.id];
