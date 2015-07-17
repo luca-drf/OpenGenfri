@@ -38,7 +38,7 @@ def commit_bill(output, reqdata, user):
         output['total'] = 0
         output['customer_id'] = None
         output['errors'] = dict(output['errors'])
-        return output
+        return output, None
     else:
         output['errors'] = dict(output['errors'])
         billhd.total = output['total']

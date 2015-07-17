@@ -1210,3 +1210,425 @@ KeyError: <Category: CUCINA>
 Not Found: /webpos/bill/19/
 Not Found: /favicon.ico
 Not Found: /favicon.ico
+Internal Server Error: /webpos/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 5, in <module>
+    class ReportForm(forms.Form):
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 11, in ReportForm
+    birth_year = forms.DateField(widget=SelectDateWidget())
+NameError: name 'SelectDateWidget' is not defined
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/middleware/common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 5, in <module>
+    class ReportForm(forms.Form):
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 11, in ReportForm
+    birth_year = forms.DateField(widget=SelectDateWidget())
+NameError: name 'SelectDateWidget' is not defined
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 5, in <module>
+    class ReportForm(forms.Form):
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 11, in ReportForm
+    date_end = forms.DateField(widget=SplitDateTimeWidget())
+NameError: name 'SplitDateTimeWidget' is not defined
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 3, in <module>
+    from django.forms.extras.widgets import SplitDateTimeWidget
+ImportError: cannot import name SplitDateTimeWidget
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 3, in <module>
+    from django.forms.extras.widgets import SplitDateTimeWidget
+ImportError: cannot import name SplitDateTimeWidget
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 5, in <module>
+    class ReportForm(forms.Form):
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 11, in ReportForm
+    date_end = forms.DateField(widget=SelectDateWidget(), initial=datetime.date.today())
+NameError: name 'datetime' is not defined
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 210, in report
+    {'form': form,
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/shortcuts.py", line 39, in render_to_response
+    content = loader.render_to_string(template_name, context, using=using)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/backends/django.py", line 74, in render
+    return self.template.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 209, in render
+    return self._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 92, in render
+    output = force_text(output)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/encoding.py", line 92, in force_text
+    s = six.text_type(s)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/html.py", line 390, in <lambda>
+    klass.__unicode__ = lambda self: mark_safe(klass_unicode(self))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 143, in __str__
+    return self.as_table()
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 284, in as_table
+    errors_on_separate_row=False)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 241, in _html_output
+    'field': six.text_type(bf),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/html.py", line 390, in <lambda>
+    klass.__unicode__ = lambda self: mark_safe(klass_unicode(self))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 543, in __str__
+    return self.as_widget()
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 599, in as_widget
+    return force_text(widget.render(name, self.value(), attrs=attrs))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/widgets.py", line 513, in render
+    options = self.render_options(choices, [value])
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/widgets.py", line 539, in render_options
+    for option_value, option_label in chain(self.choices, choices):
+TypeError: 'int' object is not iterable
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 210, in report
+    {'form': form,
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/shortcuts.py", line 39, in render_to_response
+    content = loader.render_to_string(template_name, context, using=using)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/backends/django.py", line 74, in render
+    return self.template.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 209, in render
+    return self._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 92, in render
+    output = force_text(output)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/encoding.py", line 92, in force_text
+    s = six.text_type(s)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/html.py", line 390, in <lambda>
+    klass.__unicode__ = lambda self: mark_safe(klass_unicode(self))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 143, in __str__
+    return self.as_table()
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 284, in as_table
+    errors_on_separate_row=False)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 241, in _html_output
+    'field': six.text_type(bf),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/html.py", line 390, in <lambda>
+    klass.__unicode__ = lambda self: mark_safe(klass_unicode(self))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 543, in __str__
+    return self.as_widget()
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 599, in as_widget
+    return force_text(widget.render(name, self.value(), attrs=attrs))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/widgets.py", line 513, in render
+    options = self.render_options(choices, [value])
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/widgets.py", line 539, in render_options
+    for option_value, option_label in chain(self.choices, choices):
+TypeError: 'int' object is not iterable
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/contrib/auth/decorators.py", line 22, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 210, in report
+    {'form': form,
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/shortcuts.py", line 39, in render_to_response
+    content = loader.render_to_string(template_name, context, using=using)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader.py", line 99, in render_to_string
+    return template.render(context, request)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/backends/django.py", line 74, in render
+    return self.template.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 209, in render
+    return self._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 135, in render
+    return compiled_parent._render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 201, in _render
+    return self.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/base.py", line 903, in render
+    bit = self.render_node(node, context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 79, in render_node
+    return node.render(context)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/template/debug.py", line 92, in render
+    output = force_text(output)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/encoding.py", line 92, in force_text
+    s = six.text_type(s)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/html.py", line 390, in <lambda>
+    klass.__unicode__ = lambda self: mark_safe(klass_unicode(self))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 143, in __str__
+    return self.as_table()
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 284, in as_table
+    errors_on_separate_row=False)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 241, in _html_output
+    'field': six.text_type(bf),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/html.py", line 390, in <lambda>
+    klass.__unicode__ = lambda self: mark_safe(klass_unicode(self))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 543, in __str__
+    return self.as_widget()
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/forms.py", line 599, in as_widget
+    return force_text(widget.render(name, self.value(), attrs=attrs))
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/widgets.py", line 513, in render
+    options = self.render_options(choices, [value])
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/forms/widgets.py", line 539, in render_options
+    for option_value, option_label in chain(self.choices, choices):
+ValueError: too many values to unpack
+Internal Server Error: /webpos/report/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/pos/urls.py", line 14, in <module>
+    url(r'^webpos/', include('webpos.urls', namespace="webpos")),
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/conf/urls/__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/Cellar/python/2.7.10_1/Frameworks/Python.framework/Versions/2.7/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/urls.py", line 2, in <module>
+    from webpos import views
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 16, in <module>
+    from webpos.forms import ReportForm, SearchForm
+  File "/Users/radome/src/OpenGenfri/pos/webpos/forms.py", line 8, in <module>
+    (FRESHMAN, 'Freshman'),
+NameError: name 'FRESHMAN' is not defined
+Internal Server Error: /webpos/commit/
+Traceback (most recent call last):
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/Users/radome/.pythonvenvs/OpenGenfri/lib/python2.7/site-packages/django/utils/decorators.py", line 110, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/Users/radome/src/OpenGenfri/pos/webpos/views.py", line 123, in bill_handler
+    repdata, bill = dbmng.commit_bill(output, reqdata, request.user)
+ValueError: too many values to unpack
