@@ -163,11 +163,11 @@ def report(request, *args):
         if form.is_valid():               
             date_start = form.cleaned_data['date_start']
             date_end = form.cleaned_data['date_end']
-            qs = BillItem.objects.all().filter(bill__deleted_by='')
+            qs = Bill.objects.filter(deleted_by='')
             if date_start:
-                qs = qs.filter(bill__date__gte=date_start)
+                qs = qs.filter(date__gte=date_start)
             if date_end:
-                qs = qs.filter(bill__date__lte=date_end)            
+                qs = qs.filter(date__lte=date_end)            
             
             if not qs.exists():
                 return render_to_response('webpos/report.html', 
@@ -175,25 +175,28 @@ def report(request, *args):
                                        #'report': None,
                                        'qs_empty': True})
             report_dict = {}
-            total_earn = Decimal(0)
-            total_cash = Decimal(0)
             for category in Category.objects.all():
                 report_dict[category] = {'itemss': {}, 'items_sold': 0, 'total_price': Decimal(0.00)}
                 for item in category.item_set.all():
                     report_dict[category]['itemss'][item] = {'quantity': 0,
                                                              'price': Decimal(0.00)}
-            for billitem in qs:
-                quantity = billitem.quantity
-                price = billitem.total_cost
-                entry_category = report_dict[billitem.category]
-                entry_category['items_sold'] += quantity
-                entry_category['total_price'] += abs(price)
-                entry_item = entry_category['itemss'][billitem.item]
-                entry_item['quantity'] += quantity
-                entry_item['price'] += abs(price)
-                total_cash += price
-                if price > 0:
-                    total_earn += price 
+            
+            total_earn = Decimal(0)
+            total_cash = Decimal(0)            
+            for bill in qs:
+                total_cash += bill.total
+                
+                for billitem in bill.billitem_set.all():
+                    quantity = billitem.quantity
+                    price = billitem.total_cost
+                    entry_category = report_dict[billitem.category]
+                    entry_category['items_sold'] += quantity
+                    entry_category['total_price'] += abs(price)
+                    entry_item = entry_category['itemss'][billitem.item]
+                    entry_item['quantity'] += quantity
+                    entry_item['price'] += abs(price)
+                    if price > 0:
+                        total_earn += price 
                 
 
  
