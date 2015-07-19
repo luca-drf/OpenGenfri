@@ -41,10 +41,9 @@ def commit_bill(output, reqdata, user):
         return output, None
     else:
         output['errors'] = dict(output['errors'])
-        total = output['total']
-        if total < 0:
-            total = 0
-        billhd.total = total
+        if output['total'] < 0:
+            output['total'] = 0
+        billhd.total = output['total']
         billhd.customer_id = output['customer_id']
         billhd.save()
         output['date'] = billhd.date
