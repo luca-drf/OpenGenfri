@@ -141,14 +141,26 @@ function orderPresenter (hModel) {
      */
     function filterCategory (elCategoryBtn) {
         var nId = parseInt(elCategoryBtn.dataset.id, 10),
-            aBtns = document.getElementsByClassName('products')[0].getElementsByClassName('category-' + nId);
+            aToFilterButtons = document.getElementsByClassName('products')[0].getElementsByClassName('category-' + nId),
+            aAllItemButtons = document.getElementsByClassName('products')[0].getElementsByTagName('li'),
 
+            fnResetCategoryButtons = function () {
+                var aAllCategoryButtons = document.getElementsByClassName('categories')[0].getElementsByTagName('a');
+                $.pif.forEach(aAllCategoryButtons, function (elBtn) {
+                    elBtn.classList.remove('filtered');
+                });
+            };
+
+        // Remove filter
         if (elCategoryBtn.classList.contains('filtered')) {
-            elCategoryBtn.classList.remove('filtered');
-            $.pif.forEach(aBtns, $.pif.show);
+            fnResetCategoryButtons();
+            $.pif.forEach(aAllItemButtons, $.pif.show);
+        // Add filter
         } else {
+            fnResetCategoryButtons();
             elCategoryBtn.classList.add('filtered');
-            $.pif.forEach(aBtns, $.pif.hide);
+            $.pif.forEach(aAllItemButtons, $.pif.hide);
+            $.pif.forEach(aToFilterButtons, $.pif.show);
         }
     }
 
