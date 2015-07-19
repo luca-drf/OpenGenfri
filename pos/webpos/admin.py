@@ -1,6 +1,14 @@
 from django.contrib import admin
 from webpos.models import Item, Category, Bill, BillItem, Location
 
+def make_enabled(modeladmin, request, queryset):
+    queryset.update(enabled=True)
+
+def make_disabled(modeladmin, request, queryset):
+    queryset.update(enabled=False)
+
+make_enabled.short_description = "Abilita items selezionati"
+make_disabled.short_description = "Disabilita items selezionati"
 
 class ItemAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -11,15 +19,17 @@ class ItemAdmin(admin.ModelAdmin):
                     'priority', 'enabled')
     search_fields = ['name', 'id']
     list_filter = ['category', 'enabled', 'quantity']
+    actions = [make_enabled, make_disabled]
 
 
 class CategoryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['name', 'priority', 'enabled','printable']}),
     ]
-    list_display = ('name', 'priority', 'enabled','enabled')
+    list_display = ('name', 'priority', 'enabled','printable')
     search_fields = ['name']
     list_filter = ['enabled']
+    actions = [make_enabled, make_disabled]
 
 
 class LocationAdmin(admin.ModelAdmin):
@@ -29,6 +39,7 @@ class LocationAdmin(admin.ModelAdmin):
     list_display = ('description', 'enabled')
     search_fields = ['description']
     list_filter = ['enabled']
+    actions = [make_enabled, make_disabled]
 
 
 class BillItemInline(admin.StackedInline):
