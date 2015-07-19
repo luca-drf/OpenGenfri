@@ -33,7 +33,7 @@ def index(request):
 def order(request):
     if request.user.is_authenticated():
         categories = Category.objects.filter(enabled=True).order_by('priority')
-        items = Item.objects.filter(enabled=True).order_by('category')
+        items = Item.objects.filter(enabled=True).order_by('category','priority','name')
         return render_to_response('webpos/order.html', {
             'categories' : categories,
             'items'      : items

@@ -20,7 +20,7 @@ class Category(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30, unique=True)
    # location = models.ForeignKey('Location')
-    priority = models.PositiveSmallIntegerField(default=3)
+    priority = models.PositiveSmallIntegerField(default=10)
     enabled = models.BooleanField(default=True)
     printable = models.BooleanField(default=True)
     
@@ -38,7 +38,7 @@ class Item(models.Model):
     name = models.CharField(max_length=30, unique=True)
     category = models.ForeignKey('Category')
     quantity = models.PositiveSmallIntegerField(null=True, blank=True)
-    priority = models.PositiveSmallIntegerField(default=3)
+    priority = models.PositiveSmallIntegerField(default=10)
     enabled = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
