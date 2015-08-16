@@ -1,3 +1,4 @@
+from pos import views
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.views import login, logout, password_change
@@ -13,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^chpwd/success/$', TemplateView.as_view(template_name='success.html')),
     url(r'^webpos/', include('webpos.urls', namespace="webpos")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^check/$', views.check, name='check'),
 )
